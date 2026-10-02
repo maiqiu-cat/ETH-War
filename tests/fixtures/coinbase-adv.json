@@ -1,0 +1,294 @@
+{
+ "l2_data:snapshot": [
+  {
+   "channel": "l2_data",
+   "timestamp": "2026-10-02T14:41:57.201188233Z",
+   "sequence_num": 0,
+   "events": [
+    {
+     "type": "snapshot",
+     "product_id": "ETH-USD",
+     "updates": [
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.66",
+       "new_quantity": "7.44510024"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.64",
+       "new_quantity": "1"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.46",
+       "new_quantity": "0.29107838"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.45",
+       "new_quantity": "1.23198687"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.42",
+       "new_quantity": "0.6"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.36",
+       "new_quantity": "3.25723601"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.35",
+       "new_quantity": "3.30110916"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.21",
+       "new_quantity": "13.22647384"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.2",
+       "new_quantity": "10"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.1",
+       "new_quantity": "10"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.05",
+       "new_quantity": "7.29675858"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:56.779478Z",
+       "price_level": "2726.03",
+       "new_quantity": "0.57280545"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "subscriptions:": [
+  {
+   "channel": "subscriptions",
+   "timestamp": "2026-10-02T14:41:57.211778654Z",
+   "sequence_num": 1,
+   "events": [
+    {
+     "subscriptions": {
+      "level2": [
+       "ETH-USD"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "channel": "subscriptions",
+   "timestamp": "2026-10-02T14:41:57.211857657Z",
+   "sequence_num": 2,
+   "events": [
+    {
+     "subscriptions": {
+      "heartbeats": [
+       "heartbeats"
+      ],
+      "level2": [
+       "ETH-USD"
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "l2_data:update": [
+  {
+   "channel": "l2_data",
+   "timestamp": "2026-10-02T14:41:57.232519096Z",
+   "sequence_num": 3,
+   "events": [
+    {
+     "type": "update",
+     "product_id": "ETH-USD",
+     "updates": [
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2726.06",
+       "new_quantity": "11.89571981"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2726.05",
+       "new_quantity": "7.70345265"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2725.83",
+       "new_quantity": "0.97829529"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2725.8",
+       "new_quantity": "11.12622488"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2725.74",
+       "new_quantity": "0"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2725.56",
+       "new_quantity": "1.95678441"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2725.51",
+       "new_quantity": "5.97069931"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2725.5",
+       "new_quantity": "7.70499434"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2724.53",
+       "new_quantity": "0"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2724.52",
+       "new_quantity": "0.58730867"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2721.96",
+       "new_quantity": "52.13580026"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.063978Z",
+       "price_level": "2721.08",
+       "new_quantity": "0.09187514"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "channel": "l2_data",
+   "timestamp": "2026-10-02T14:41:57.233584195Z",
+   "sequence_num": 4,
+   "events": [
+    {
+     "type": "update",
+     "product_id": "ETH-USD",
+     "updates": [
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.110286Z",
+       "price_level": "2385.84",
+       "new_quantity": "0.04220052"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "channel": "l2_data",
+   "timestamp": "2026-10-02T14:41:57.27808816Z",
+   "sequence_num": 5,
+   "events": [
+    {
+     "type": "update",
+     "product_id": "ETH-USD",
+     "updates": [
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.180687Z",
+       "price_level": "2726.66",
+       "new_quantity": "7.44441519"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.180687Z",
+       "price_level": "2685.76",
+       "new_quantity": "0.001"
+      },
+      {
+       "side": "bid",
+       "event_time": "2026-10-02T14:41:57.180687Z",
+       "price_level": "2645.47",
+       "new_quantity": "0.001"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "heartbeats:": [
+  {
+   "channel": "heartbeats",
+   "timestamp": "2026-10-02T14:41:57.930023786Z",
+   "sequence_num": 16,
+   "events": [
+    {
+     "current_time": "2026-10-02 14:41:57.927994747 +0000 UTC m=+56579.274013239",
+     "heartbeat_counter": 56579
+    }
+   ]
+  },
+  {
+   "channel": "heartbeats",
+   "timestamp": "2026-10-02T14:41:58.929803839Z",
+   "sequence_num": 34,
+   "events": [
+    {
+     "current_time": "2026-10-02 14:41:58.928020286 +0000 UTC m=+56580.274038778",
+     "heartbeat_counter": 56580
+    }
+   ]
+  },
+  {
+   "channel": "heartbeats",
+   "timestamp": "2026-10-02T14:41:59.928703321Z",
+   "sequence_num": 50,
+   "events": [
+    {
+     "current_time": "2026-10-02 14:41:59.928015945 +0000 UTC m=+56581.274034427",
+     "heartbeat_counter": 56581
+    }
+   ]
+  }
+ ]
+}

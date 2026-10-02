@@ -1,0 +1,1508 @@
+:root {
+  --bull: #41d877;
+  --bear: #ff5a5a;
+  --bull-glow: rgba(65, 216, 119, 0.55);
+  --bear-glow: rgba(255, 90, 90, 0.55);
+  --panel: rgba(12, 14, 18, 0.58);
+  --panel-border: rgba(255, 255, 255, 0.09);
+  --text: #f2f2ee;
+  --muted: rgba(242, 242, 238, 0.56);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #0d0f13;
+  color: var(--text);
+  font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* iOS would otherwise enlarge text when the phone is turned sideways */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+}
+
+#app canvas {
+  display: block;
+}
+
+.labels-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+}
+
+#hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  font-size: 12px;
+}
+
+#hud .panel,
+#hud button,
+#hud select,
+#hud a {
+  pointer-events: auto;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(22, 25, 31, 0.62), var(--panel));
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  padding: 10px 12px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* staggered entrance */
+.enter {
+  animation: enter 0.9s var(--ease) both;
+  animation-delay: calc(var(--d, 0) * 0.12s + 0.15s);
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+    filter: blur(4px);
+  }
+}
+
+select,
+button {
+  font: inherit;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.15s;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+button:hover,
+select:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+button.on {
+  background: rgba(65, 216, 119, 0.18);
+  border-color: rgba(65, 216, 119, 0.55);
+  box-shadow: 0 0 12px rgba(65, 216, 119, 0.25);
+}
+
+button.lang {
+  white-space: nowrap;
+  min-width: 40px;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* top-left on every screen size: site logo and name, then the author's X link */
+.masthead {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #f2f2ee;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
+}
+
+.brand img {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* author's X profile: avatar, nickname, X mark */
+.xlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px 0 2px;
+  border-radius: 999px;
+  background: rgba(14, 17, 22, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #f2f2ee;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.xlink:hover,
+.xlink:focus-visible {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(14, 17, 22, 0.78);
+}
+
+.xlink img {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.xlink .xmark {
+  opacity: 0.75;
+}
+
+/* the copy below the war bar is only for phones held upright */
+.xlink.under-bar {
+  display: none;
+}
+
+/* below the brand */
+.tl {
+  position: absolute;
+  top: 56px;
+  left: 14px;
+  min-width: 180px;
+}
+
+.tl .regime {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.tl .row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tl .mode {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--bull);
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+.tl .mode.sim {
+  color: #ffc24b;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.tl .clock {
+  margin-top: 6px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.top-center {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  /* stays clear of the 318px menu panel on the right (and the status panel on the left) */
+  width: min(580px, calc(100vw - 692px));
+}
+
+.top-center .caption {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: rgba(242, 242, 238, 0.7);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.price-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-row .arrow {
+  font-size: 14px;
+  width: 14px;
+  transition: color 0.3s;
+}
+
+.price-row .arrow.up {
+  color: var(--bull);
+}
+
+.price-row .arrow.down {
+  color: var(--bear);
+}
+
+.top-center .price {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.6);
+}
+
+.top-center .price.up {
+  animation: flashUp 0.9s var(--ease);
+}
+
+.top-center .price.down {
+  animation: flashDown 0.9s var(--ease);
+}
+
+@keyframes flashUp {
+  0% {
+    color: var(--bull);
+    text-shadow: 0 0 12px rgba(65, 216, 119, 0.35);
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes flashDown {
+  0% {
+    color: var(--bear);
+    text-shadow: 0 0 12px rgba(255, 90, 90, 0.35);
+    transform: translateY(2px);
+  }
+}
+
+.top-center .change {
+  position: relative;
+  display: inline-block;
+  padding: 1px 9px;
+  border-radius: 10px;
+  background: rgba(8, 10, 12, 0.42);
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 1px;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.85),
+    0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.change.pos {
+  color: var(--bull);
+}
+
+.change.neg {
+  color: var(--bear);
+}
+
+.warbar {
+  margin-top: 8px;
+  padding: 9px 13px 7px;
+}
+
+.warbar .ends {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.warbar .ends span {
+  display: flex;
+  flex-direction: column;
+  font-variant-numeric: tabular-nums;
+}
+
+.warbar .ends small {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.warbar .bear b {
+  color: var(--bear);
+}
+
+.warbar .bull b {
+  color: var(--bull);
+  align-self: flex-end;
+}
+
+.warbar .bull small {
+  align-self: flex-end;
+}
+
+.warbar .status {
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+  flex: 1;
+  transition: color 0.4s;
+}
+
+.warbar .status[data-tone='bull'] {
+  color: #b7f5cb;
+}
+
+.warbar .status[data-tone='bear'] {
+  color: #ffc4c4;
+}
+
+.warbar .status.swap {
+  animation: swap 0.6s var(--ease);
+}
+
+@keyframes swap {
+  from {
+    opacity: 0;
+    translate: 0 5px;
+    filter: blur(3px);
+  }
+}
+
+.warbar .bar {
+  position: relative;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(255, 90, 90, 0.35), rgba(255, 90, 90, 0.8));
+  box-shadow: 0 0 12px rgba(255, 90, 90, 0.2);
+}
+
+.warbar .fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 3px;
+  overflow: hidden;
+  background: linear-gradient(90deg, rgba(65, 216, 119, 0.5), var(--bull));
+  box-shadow: 0 0 12px rgba(65, 216, 119, 0.35);
+}
+
+.warbar .fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  width: 40%;
+  animation: shimmer 2.6s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(320%);
+  }
+}
+
+.warbar .marker {
+  position: absolute;
+  top: -5px;
+  width: 3px;
+  height: 16px;
+  margin-left: -1.5px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 10px #fff;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow:
+      0 0 18px #fff,
+      0 0 4px #fff;
+  }
+}
+
+.warbar .score {
+  margin-top: 5px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.side {
+  position: absolute;
+  top: 32%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.side small {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.side b {
+  font-size: 23px;
+  font-variant-numeric: tabular-nums;
+}
+
+.side.left {
+  left: 14px;
+}
+
+.side.left b {
+  color: var(--bull);
+  text-shadow: 0 0 16px rgba(65, 216, 119, 0.35);
+}
+
+.side.right {
+  right: 14px;
+  text-align: right;
+}
+
+.side.right b {
+  color: var(--bear);
+  text-shadow: 0 0 16px rgba(255, 90, 90, 0.35);
+}
+
+.tr {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 318px;
+}
+
+.tr button {
+  white-space: nowrap;
+}
+
+.tr .buttons {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.venue {
+  display: grid;
+  grid-template-columns: 10px 64px 1fr 42px 46px;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.venue i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.venue.ok i {
+  box-shadow: 0 0 0 0 var(--c);
+  animation: ping 2.2s ease-out infinite;
+}
+
+@keyframes ping {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--c) 70%, transparent);
+  }
+  80%,
+  100% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+.venue em {
+  font-style: normal;
+  color: var(--muted);
+  text-align: right;
+}
+
+.venue em.wbar {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.venue em.wbar u {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.8s var(--ease);
+}
+
+.venue.warn span {
+  color: #ffc24b;
+}
+
+.venue.bad {
+  opacity: 0.45;
+}
+
+.bl {
+  position: absolute;
+  left: 14px;
+  bottom: 30px;
+  width: 340px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.bl canvas {
+  width: 100%;
+  height: 112px;
+  display: block;
+}
+
+.bl .axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.bl .legend {
+  margin-top: 5px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.br {
+  position: absolute;
+  right: 14px;
+  bottom: 30px;
+  width: 340px;
+}
+
+.br .live {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--bull);
+}
+
+.br .live i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bull);
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+/* large-trade threshold next to the feed title */
+.br .head .min {
+  margin-left: 8px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+  cursor: help;
+}
+
+.br ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-height: 60px;
+  /* Fresh rows slide 14px in from the right; keep that motion inside the feed panel. */
+  overflow-x: clip;
+}
+
+.br li {
+  display: grid;
+  grid-template-columns: 56px 16px 1fr auto;
+  gap: 7px;
+  align-items: center;
+  padding: 4px 4px 4px 7px;
+  border-left: 2px solid transparent;
+  border-radius: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.br li.fresh {
+  animation: slideIn 0.6s var(--ease);
+}
+
+.br li.fresh.bull {
+  animation:
+    slideIn 0.6s var(--ease),
+    glowBull 1.6s ease-out;
+}
+
+.br li.fresh.bear {
+  animation:
+    slideIn 0.6s var(--ease),
+    glowBear 1.6s ease-out;
+}
+
+@keyframes glowBull {
+  from {
+    background: rgba(65, 216, 119, 0.22);
+  }
+}
+
+@keyframes glowBear {
+  from {
+    background: rgba(255, 90, 90, 0.22);
+  }
+}
+
+.br li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.br li.bull {
+  border-left-color: var(--bull);
+}
+
+.br li.bear {
+  border-left-color: var(--bear);
+}
+
+.br li.liq span,
+.br li.big span {
+  font-weight: 700;
+}
+
+.br li.big b {
+  font-size: 13px;
+}
+
+.br li.big.bull b {
+  text-shadow: 0 0 12px var(--bull-glow);
+}
+
+.br li.big.bear b {
+  text-shadow: 0 0 12px var(--bear-glow);
+}
+
+.br li time {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.br li i {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 700;
+  color: #111;
+  display: grid;
+  place-items: center;
+}
+
+.br li span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.br li b {
+  font-weight: 600;
+}
+
+#hud em.full,
+#hud em.short {
+  font-style: normal;
+}
+
+/* short names (买入 for 大额买入, DEPTH for ORDER BOOK DEPTH) are for phones */
+#hud em.short {
+  display: none;
+}
+
+.br li.bull b {
+  color: var(--bull);
+}
+
+.br li.bear b {
+  color: var(--bear);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+}
+
+/* Round banner */
+.banner {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  --accent: #ffffff;
+  --accent-glow: rgba(255, 255, 255, 0.45);
+}
+
+.banner.bulls {
+  --accent: var(--bull);
+  --accent-glow: var(--bull-glow);
+}
+
+.banner.bears {
+  --accent: var(--bear);
+  --accent-glow: var(--bear-glow);
+}
+
+.banner.show {
+  opacity: 1;
+}
+
+.banner.hide {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 50px;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  color: var(--accent);
+  text-shadow:
+    0 0 28px var(--accent-glow),
+    0 4px 30px rgba(0, 0, 0, 0.7);
+}
+
+.banner.show h1 {
+  animation: bannerIn 1s var(--ease) both;
+}
+
+@keyframes bannerIn {
+  from {
+    opacity: 0;
+    letter-spacing: 0.5em;
+    filter: blur(10px);
+    transform: scale(1.08);
+  }
+}
+
+.banner .b-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.banner .b-rule i {
+  display: block;
+  height: 1px;
+  width: 160px;
+  background: linear-gradient(90deg, transparent, var(--accent));
+  transform-origin: right;
+}
+
+.banner .b-rule i:last-child {
+  background: linear-gradient(270deg, transparent, var(--accent));
+  transform-origin: left;
+}
+
+.banner .b-rule em {
+  width: 7px;
+  height: 7px;
+  rotate: 45deg;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.banner.show .b-rule i {
+  animation: rule 0.9s var(--ease) both;
+}
+
+@keyframes rule {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.banner p {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.banner.show p {
+  animation: enter 0.8s var(--ease) 0.35s both;
+}
+
+.banner p .b {
+  color: var(--bull);
+}
+
+.banner p .r {
+  color: var(--bear);
+}
+
+.tr button.sound.muted {
+  opacity: 0.55;
+}
+
+/* network notice (live mode): the browser is offline, or no exchange is sending trades */
+.net-alert {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: max-content;
+  max-width: min(380px, calc(100vw - 32px));
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(40, 32, 18, 0.84), rgba(22, 20, 16, 0.9));
+  border: 1px solid rgba(255, 194, 75, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #f2f2ee;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s;
+}
+
+.net-alert.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.net-alert .net-icon {
+  flex: none;
+  margin-top: 1px;
+  color: #ffc24b;
+}
+
+.net-alert b {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffc24b;
+}
+
+.net-alert p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(242, 242, 238, 0.86);
+}
+.sound-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  translate: -50% 0;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(12, 14, 18, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 12px;
+  pointer-events: auto;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  animation: hintPulse 2.4s ease-in-out infinite;
+}
+
+.sound-hint.show {
+  display: inline-flex;
+}
+
+.sound-hint span {
+  display: inline-flex;
+  color: var(--bull);
+}
+
+@keyframes hintPulse {
+  50% {
+    box-shadow:
+      0 6px 24px rgba(0, 0, 0, 0.35),
+      0 0 0 6px rgba(65, 216, 119, 0.12);
+  }
+}
+
+.hints {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* 3D-anchored labels */
+.front-label {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(10, 12, 14, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 14px rgba(216, 255, 230, 0.25);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.reserve-label {
+  pointer-events: none;
+  transition: opacity 0.35s;
+  text-align: center;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: rgba(10, 12, 14, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+/* cut by the screen edge or under a HUD panel (world.fitReserveLabels) */
+.reserve-label.cut {
+  opacity: 0;
+}
+
+.reserve-label b {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.reserve-label span {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.reserve-label small {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.reserve-label.bulls span {
+  color: var(--bull);
+}
+
+.reserve-label.bears span {
+  color: var(--bear);
+}
+
+.event-label {
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+  line-height: 1.15;
+  animation: floatUp 2.6s ease-out forwards;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+.event-label b {
+  font-size: 14px;
+}
+
+.event-label.liq b {
+  font-size: 18px;
+}
+
+.event-label.bull b {
+  color: var(--bull);
+  text-shadow: 0 0 12px var(--bull-glow);
+}
+
+.event-label.bear b {
+  color: var(--bear);
+  text-shadow: 0 0 12px var(--bear-glow);
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    translate: 0 8px;
+    scale: 0.7;
+  }
+  12% {
+    opacity: 1;
+    scale: 1.08;
+  }
+  20% {
+    scale: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 -30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------ small screens
+   Compact layout for phones (either way up), tablets and windows up to 1100px wide: the status
+   panel, side reserves, venue list and keyboard hints are hidden, and the menu becomes an icon row
+   that shares the first line with the caption, so it never covers the price or the war bar.
+   Checked by `pnpm verify:mobile` (scripts/mobile-check.mjs). */
+@media (max-width: 1100px), (max-height: 500px) {
+  .side,
+  .tl,
+  .tr .venues,
+  .hints {
+    display: none;
+  }
+
+  .tr {
+    top: 8px;
+    right: 8px;
+    width: auto;
+    padding: 3px;
+    border-radius: 10px;
+  }
+
+  /* level with the icon menu on the first row */
+  .masthead {
+    top: 8px;
+    left: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .brand {
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .brand img {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+  }
+
+  .tr .buttons {
+    gap: 3px;
+    margin-bottom: 0;
+  }
+
+  .tr button {
+    height: 28px;
+    padding: 0 7px;
+    font-size: 11px;
+  }
+
+  /* icon only; the full name stays in the tooltip */
+  .tr button span {
+    display: none;
+  }
+
+  .tr button.lang {
+    min-width: 32px;
+    font-size: 10.5px;
+  }
+
+  .top-center {
+    top: 8px;
+    width: min(580px, calc(100vw - 16px));
+    display: grid;
+    grid-template-columns: 1fr auto auto 1fr;
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  /* first row, level with the menu */
+  .top-center .caption {
+    grid-column: 1 / -1;
+    height: 36px;
+    line-height: 36px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* price and 24h change share the second row */
+  .top-center .price-row {
+    grid-column: 2;
+  }
+
+  .top-center .change {
+    grid-column: 3;
+    justify-self: start;
+    margin-top: 0;
+    padding: 1px 7px;
+    font-size: 10.5px;
+  }
+
+  .top-center .price {
+    font-size: 30px;
+  }
+
+  .price-row .arrow {
+    width: 11px;
+    font-size: 11px;
+  }
+
+  .warbar {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+    padding: 7px 10px 6px;
+  }
+
+  .warbar .ends small {
+    font-size: 8px;
+    letter-spacing: 0.06em;
+  }
+
+  .warbar .ends b {
+    font-size: 12px;
+  }
+
+  .warbar .status {
+    font-size: 11px;
+  }
+
+  .warbar .bar {
+    height: 5px;
+    margin-top: 6px;
+  }
+
+  .warbar .marker {
+    top: -4px;
+    height: 13px;
+  }
+
+  .warbar .score {
+    margin-top: 4px;
+    font-size: 9px;
+  }
+
+  .bl,
+  .br {
+    bottom: 8px;
+    width: min(380px, calc(50vw - 12px));
+    padding: 7px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+  }
+
+  .bl {
+    left: 8px;
+  }
+
+  .br {
+    right: 8px;
+  }
+
+  .head {
+    margin-bottom: 4px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+
+  .head select {
+    padding: 2px 4px;
+    font-size: 9.5px;
+  }
+
+  .bl canvas {
+    height: 96px;
+  }
+
+  .bl .axis {
+    font-size: 8.5px;
+  }
+
+  .bl .legend {
+    margin-top: 3px;
+    font-size: 8.5px;
+    line-height: 1.35;
+  }
+
+  .br ul {
+    min-height: 0;
+  }
+
+  .br li {
+    grid-template-columns: auto 13px 1fr auto;
+    gap: 5px;
+    padding: 2px 3px 2px 5px;
+  }
+
+  .br li time {
+    font-size: 9px;
+  }
+
+  .br li i {
+    width: 13px;
+    height: 13px;
+    font-size: 7.5px;
+  }
+
+  .br li.big b {
+    font-size: 11px;
+  }
+
+  /* the 'tap to turn on sound' hint floats over the field, clear of both bottom panels */
+  .sound-hint {
+    top: 56%;
+    bottom: auto;
+    width: max-content;
+    max-width: calc(100vw - 32px);
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .banner h1 {
+    font-size: 32px;
+  }
+
+  .banner .b-rule i {
+    width: 80px;
+  }
+
+  .banner p {
+    max-width: calc(100vw - 32px);
+    font-size: 11px;
+  }
+
+  .front-label {
+    padding: 2px 6px;
+    font-size: 11px;
+  }
+
+  .reserve-label {
+    padding: 4px 7px;
+  }
+
+  .reserve-label b {
+    font-size: 8px;
+  }
+
+  .reserve-label span {
+    font-size: 12px;
+  }
+
+  .reserve-label small {
+    font-size: 8.5px;
+  }
+
+  .event-label {
+    font-size: 9px;
+  }
+
+  .event-label b {
+    font-size: 12px;
+  }
+
+  .event-label.liq b {
+    font-size: 14px;
+  }
+}
+
+/* phones, either way up: short names (everything in the feed is large; the depth select needs the room) */
+@media (max-width: 600px), (max-height: 500px) {
+  #hud em.full {
+    display: none;
+  }
+
+  #hud em.short {
+    display: inline;
+  }
+}
+
+/* phones held upright */
+@media (max-width: 600px) {
+  /* the brand takes the left of the first row and the icon menu (about 175px) the right; the caption
+     keeps the row height so the price and war bar stay where they were, but is not shown */
+  .top-center .caption {
+    visibility: hidden;
+  }
+
+  /* no room next to the brand: the X link moves below the war bar, on the left */
+  .masthead .xlink {
+    display: none;
+  }
+
+  .top-center .xlink.under-bar {
+    display: inline-flex;
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 6px;
+  }
+
+  .top-center .price {
+    font-size: 26px;
+  }
+
+  .bl canvas {
+    height: 72px;
+  }
+
+  .br li:nth-child(n + 7) {
+    display: none;
+  }
+}
+
+/* short phones held upright: the round banner and the network notice need the room below the war bar,
+   so the X link steps aside while either is up */
+@media (max-width: 600px) and (max-height: 640px) {
+  #hud:has(.banner.show:not(.hide)) .xlink.under-bar,
+  #hud:has(.net-alert.show) .xlink.under-bar {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* phones held sideways: very little height */
+@media (max-height: 500px) {
+  /* narrower, so the price row can sit level with the menu */
+  .top-center {
+    width: min(460px, calc(100vw - 380px));
+  }
+
+  .top-center .caption {
+    display: none;
+  }
+
+  .top-center .price {
+    font-size: 22px;
+  }
+
+  .top-center .change {
+    font-size: 10px;
+  }
+
+  .warbar {
+    padding: 5px 9px 4px;
+  }
+
+  .warbar .bar {
+    margin-top: 5px;
+  }
+
+  .warbar .score {
+    margin-top: 3px;
+  }
+
+  .bl,
+  .br {
+    width: min(300px, 30vw);
+  }
+
+  .bl canvas {
+    height: 44px;
+  }
+
+  .br li:nth-child(n + 5) {
+    display: none;
+  }
+
+  /* between the two bottom panels */
+  .sound-hint {
+    top: auto;
+    bottom: 10px;
+    max-width: calc(40vw - 32px);
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* between the war bar and the bottom panels */
+  .banner {
+    top: 46%;
+  }
+
+  .net-alert {
+    top: 46%;
+    max-width: min(380px, calc(100vw - 120px));
+    padding: 8px 12px;
+  }
+
+  .net-alert b {
+    font-size: 13px;
+  }
+
+  .net-alert p {
+    margin-top: 2px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .banner h1 {
+    font-size: 26px;
+  }
+
+  .banner p {
+    margin-top: 5px;
+    font-size: 10.5px;
+  }
+}

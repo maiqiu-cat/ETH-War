@@ -1,0 +1,12 @@
+#!/bin/sh
+# Same check as pre-commit, for the commit message.
+list="$(git rev-parse --show-toplevel)/private/deploy/forbidden-patterns.txt"
+[ -f "$list" ] || exit 0
+pats=$(mktemp) && trap 'rm -f "$pats"' EXIT
+grep -v -e '^#' -e '^[[:space:]]*$' "$list" >"$pats"
+hits=$(grep -v '^#' "$1" | grep -i -E -f "$pats")
+if [ -n "$hits" ]; then
+  echo "commit-msg: message contains details listed in private/deploy/forbidden-patterns.txt:" >&2
+  printf '%s\n' "$hits" | cut -c1-200 >&2
+  exit 1
+fi

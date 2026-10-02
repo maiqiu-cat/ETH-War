@@ -1,0 +1,134 @@
+{
+ "type:subscriptions": [
+  {
+   "type": "subscriptions",
+   "channels": [
+    {
+     "name": "matches",
+     "product_ids": [
+      "ETH-USD"
+     ],
+     "account_ids": null
+    },
+    {
+     "name": "ticker",
+     "product_ids": [
+      "ETH-USD"
+     ],
+     "account_ids": null
+    }
+   ]
+  }
+ ],
+ "type:last_match": [
+  {
+   "type": "last_match",
+   "trade_id": 846627412,
+   "maker_order_id": "09d0c0f6-ae4a-4bd7-b6a3-245743c59e48",
+   "taker_order_id": "86045148-93b1-411d-89f4-3ac5662a1dfc",
+   "side": "sell",
+   "size": "1.12216486",
+   "price": "2726.54",
+   "product_id": "ETH-USD",
+   "sequence": 103597845974,
+   "time": "2026-10-02T14:41:55.503455Z"
+  }
+ ],
+ "type:ticker": [
+  {
+   "type": "ticker",
+   "sequence": 103597845974,
+   "product_id": "ETH-USD",
+   "price": "2726.54",
+   "open_24h": "2689.11",
+   "volume_24h": "106186.03775299",
+   "low_24h": "2671.8",
+   "high_24h": "2776.8",
+   "volume_30d": "3095152.68667173",
+   "best_bid": "2726.33",
+   "best_bid_size": "2.81766000",
+   "best_ask": "2726.74",
+   "best_ask_size": "1.12216486",
+   "side": "buy",
+   "time": "2026-10-02T14:41:55.503455Z",
+   "trade_id": 846627412,
+   "last_size": "1.12216486"
+  },
+  {
+   "type": "ticker",
+   "sequence": 103597847953,
+   "product_id": "ETH-USD",
+   "price": "2726.66",
+   "open_24h": "2689.11",
+   "volume_24h": "106186.03843804",
+   "low_24h": "2671.8",
+   "high_24h": "2776.8",
+   "volume_30d": "3095152.68735678",
+   "best_bid": "2726.66",
+   "best_bid_size": "7.44441519",
+   "best_ask": "2726.68",
+   "best_ask_size": "0.18343238",
+   "side": "sell",
+   "time": "2026-10-02T14:41:57.173208Z",
+   "trade_id": 846627413,
+   "last_size": "0.00068505"
+  },
+  {
+   "type": "ticker",
+   "sequence": 103597848033,
+   "product_id": "ETH-USD",
+   "price": "2726.66",
+   "open_24h": "2689.11",
+   "volume_24h": "106186.03900934",
+   "low_24h": "2671.8",
+   "high_24h": "2776.8",
+   "volume_30d": "3095152.68792808",
+   "best_bid": "2726.66",
+   "best_bid_size": "7.44384389",
+   "best_ask": "2726.67",
+   "best_ask_size": "1.00000000",
+   "side": "sell",
+   "time": "2026-10-02T14:41:57.342521Z",
+   "trade_id": 846627414,
+   "last_size": "0.0005713"
+  }
+ ],
+ "type:match": [
+  {
+   "type": "match",
+   "trade_id": 846627413,
+   "maker_order_id": "1d7437f0-1cf6-43e7-a9c4-f01dec8639d7",
+   "taker_order_id": "219b872a-c489-4735-974a-2a2bbe5b8bd2",
+   "side": "buy",
+   "size": "0.00068505",
+   "price": "2726.66",
+   "product_id": "ETH-USD",
+   "sequence": 103597847953,
+   "time": "2026-10-02T14:41:57.173208Z"
+  },
+  {
+   "type": "match",
+   "trade_id": 846627414,
+   "maker_order_id": "d82a0234-0af2-4e3c-825e-242bfa096370",
+   "taker_order_id": "7b603102-196e-4595-ae58-77708020642a",
+   "side": "buy",
+   "size": "0.0005713",
+   "price": "2726.66",
+   "product_id": "ETH-USD",
+   "sequence": 103597848033,
+   "time": "2026-10-02T14:41:57.342521Z"
+  },
+  {
+   "type": "match",
+   "trade_id": 846627415,
+   "maker_order_id": "547642bf-08c9-4630-9024-c41d0b9ba6d1",
+   "taker_order_id": "7b603102-196e-4595-ae58-77708020642a",
+   "side": "buy",
+   "size": "1.9483",
+   "price": "2726.66",
+   "product_id": "ETH-USD",
+   "sequence": 103597848035,
+   "time": "2026-10-02T14:41:57.342521Z"
+  }
+ ]
+}

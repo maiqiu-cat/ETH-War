@@ -1,0 +1,92 @@
+{
+ "other": [
+  {
+   "jsonrpc": "2.0",
+   "id": 1,
+   "result": [
+    "trades.option.ETH.100ms"
+   ],
+   "usIn": 1790952117304888,
+   "usOut": 1790952117305143,
+   "usDiff": 255,
+   "testnet": false
+  }
+ ],
+ "method:subscription:trades.option.ETH.100ms": [
+  {
+   "jsonrpc": "2.0",
+   "method": "subscription",
+   "params": {
+    "channel": "trades.option.ETH.100ms",
+    "data": [
+     {
+      "timestamp": 1790952121800,
+      "iv": 75.17,
+      "price": 0.0003,
+      "amount": 100,
+      "direction": "buy",
+      "index_price": 2726.7,
+      "instrument_name": "ETH-6OCT26-2300-P",
+      "trade_seq": 16,
+      "mark_price": 0.000274,
+      "tick_direction": 1,
+      "starbase_match_id": 231787816235839500,
+      "trade_id": "ETH-312436201",
+      "contracts": 100,
+      "starbase_timestamp": 1790952121800919300
+     }
+    ]
+   }
+  },
+  {
+   "jsonrpc": "2.0",
+   "method": "subscription",
+   "params": {
+    "channel": "trades.option.ETH.100ms",
+    "data": [
+     {
+      "timestamp": 1790952125086,
+      "iv": 35.37,
+      "price": 0.0005,
+      "amount": 2,
+      "direction": "sell",
+      "index_price": 2726.67,
+      "instrument_name": "ETH-4OCT26-2620-P",
+      "trade_seq": 22,
+      "mark_price": 0.000503,
+      "tick_direction": 3,
+      "starbase_match_id": 231787830018322430,
+      "trade_id": "ETH-312436207",
+      "contracts": 2,
+      "starbase_timestamp": 1790952125086442000
+     }
+    ]
+   }
+  },
+  {
+   "jsonrpc": "2.0",
+   "method": "subscription",
+   "params": {
+    "channel": "trades.option.ETH.100ms",
+    "data": [
+     {
+      "timestamp": 1790952127497,
+      "iv": 35.41,
+      "price": 0.0005,
+      "amount": 1,
+      "direction": "sell",
+      "index_price": 2726.93,
+      "instrument_name": "ETH-4OCT26-2620-P",
+      "trade_seq": 23,
+      "mark_price": 0.000506,
+      "tick_direction": 3,
+      "starbase_match_id": 231787840130789380,
+      "trade_id": "ETH-312436213",
+      "contracts": 1,
+      "starbase_timestamp": 1790952127497395200
+     }
+    ]
+   }
+  }
+ ]
+}

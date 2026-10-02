@@ -1,0 +1,294 @@
+{
+ "music": {
+  "calm": {
+   "file": "music-calm-undertow.m4a",
+   "seconds": 65.0,
+   "peak": 0.849,
+   "rmsDb": -16.1,
+   "bytes": 1074095,
+   "loopStart": 0.5,
+   "loopLength": 64.0,
+   "title": "M2 Undertow"
+  },
+  "battle": {
+   "file": "music-battle-iron-march.m4a",
+   "seconds": 77.8,
+   "peak": 0.862,
+   "rmsDb": -16.1,
+   "bytes": 1297572,
+   "loopStart": 10.1,
+   "loopLength": 67.2,
+   "title": "M1 Iron March"
+  },
+  "victory": {
+   "file": "music-victory-dawn-charge.m4a",
+   "seconds": 17.055,
+   "peak": 0.809,
+   "rmsDb": -15.4,
+   "bytes": 285172,
+   "title": "M3 Dawn Charge (bars 12–20)"
+  }
+ },
+ "sfx": {
+  "rifle_bull": [
+   {
+    "file": "sfx-rifle_bull-0.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -26.0,
+    "bytes": 10920
+   },
+   {
+    "file": "sfx-rifle_bull-1.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -24.4,
+    "bytes": 11405
+   },
+   {
+    "file": "sfx-rifle_bull-2.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -25.6,
+    "bytes": 10881
+   },
+   {
+    "file": "sfx-rifle_bull-3.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -23.6,
+    "bytes": 11346
+   },
+   {
+    "file": "sfx-rifle_bull-4.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -24.3,
+    "bytes": 11543
+   },
+   {
+    "file": "sfx-rifle_bull-5.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -25.4,
+    "bytes": 11039
+   }
+  ],
+  "rifle_bear": [
+   {
+    "file": "sfx-rifle_bear-0.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -24.9,
+    "bytes": 11100
+   },
+   {
+    "file": "sfx-rifle_bear-1.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -25.2,
+    "bytes": 11038
+   },
+   {
+    "file": "sfx-rifle_bear-2.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -26.0,
+    "bytes": 11247
+   },
+   {
+    "file": "sfx-rifle_bear-3.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -25.9,
+    "bytes": 11428
+   },
+   {
+    "file": "sfx-rifle_bear-4.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -24.7,
+    "bytes": 11333
+   },
+   {
+    "file": "sfx-rifle_bear-5.m4a",
+    "seconds": 0.86,
+    "peak": 0.9,
+    "rmsDb": -25.6,
+    "bytes": 10878
+   }
+  ],
+  "mg_bull": [
+   {
+    "file": "sfx-mg_bull-0.m4a",
+    "seconds": 1.5,
+    "peak": 0.9,
+    "rmsDb": -20.1,
+    "bytes": 17548
+   },
+   {
+    "file": "sfx-mg_bull-1.m4a",
+    "seconds": 1.5,
+    "peak": 0.9,
+    "rmsDb": -19.9,
+    "bytes": 17491
+   }
+  ],
+  "mg_bear": [
+   {
+    "file": "sfx-mg_bear-0.m4a",
+    "seconds": 1.689,
+    "peak": 0.9,
+    "rmsDb": -19.3,
+    "bytes": 19886
+   },
+   {
+    "file": "sfx-mg_bear-1.m4a",
+    "seconds": 1.532,
+    "peak": 0.9,
+    "rmsDb": -19.8,
+    "bytes": 17964
+   }
+  ],
+  "cannon": [
+   {
+    "file": "sfx-cannon-0.m4a",
+    "seconds": 2.17,
+    "peak": 0.917,
+    "rmsDb": -18.1,
+    "bytes": 28028
+   },
+   {
+    "file": "sfx-cannon-1.m4a",
+    "seconds": 2.17,
+    "peak": 0.924,
+    "rmsDb": -18.4,
+    "bytes": 27878
+   },
+   {
+    "file": "sfx-cannon-2.m4a",
+    "seconds": 2.17,
+    "peak": 0.942,
+    "rmsDb": -17.9,
+    "bytes": 27994
+   }
+  ],
+  "expl_s": [
+   {
+    "file": "sfx-expl_s-0.m4a",
+    "seconds": 2.49,
+    "peak": 0.723,
+    "rmsDb": -22.2,
+    "bytes": 31860
+   },
+   {
+    "file": "sfx-expl_s-1.m4a",
+    "seconds": 2.49,
+    "peak": 0.723,
+    "rmsDb": -22.8,
+    "bytes": 31721
+   }
+  ],
+  "expl_m": [
+   {
+    "file": "sfx-expl_m-0.m4a",
+    "seconds": 3.39,
+    "peak": 0.795,
+    "rmsDb": -22.3,
+    "bytes": 44523
+   },
+   {
+    "file": "sfx-expl_m-1.m4a",
+    "seconds": 3.39,
+    "peak": 0.795,
+    "rmsDb": -20.9,
+    "bytes": 42875
+   }
+  ],
+  "expl_l": [
+   {
+    "file": "sfx-expl_l-0.m4a",
+    "seconds": 5.97,
+    "peak": 0.883,
+    "rmsDb": -22.1,
+    "bytes": 76934
+   },
+   {
+    "file": "sfx-expl_l-1.m4a",
+    "seconds": 5.97,
+    "peak": 0.883,
+    "rmsDb": -21.7,
+    "bytes": 74453
+   }
+  ],
+  "expl_xl": [
+   {
+    "file": "sfx-expl_xl-0.m4a",
+    "seconds": 7.05,
+    "peak": 0.97,
+    "rmsDb": -21.2,
+    "bytes": 87965
+   },
+   {
+    "file": "sfx-expl_xl-1.m4a",
+    "seconds": 7.05,
+    "peak": 0.97,
+    "rmsDb": -20.1,
+    "bytes": 90631
+   }
+  ],
+  "whistle": [
+   {
+    "file": "sfx-whistle-0.m4a",
+    "seconds": 1.8,
+    "peak": 0.6,
+    "rmsDb": -13.8,
+    "bytes": 23318,
+    "impactAt": 1.8
+   }
+  ],
+  "flare": [
+   {
+    "file": "sfx-flare-0.m4a",
+    "seconds": 1.4,
+    "peak": 0.8,
+    "rmsDb": -20.4,
+    "bytes": 18517
+   },
+   {
+    "file": "sfx-flare-1.m4a",
+    "seconds": 1.4,
+    "peak": 0.8,
+    "rmsDb": -20.9,
+    "bytes": 18981
+   }
+  ],
+  "horn": [
+   {
+    "file": "sfx-horn.m4a",
+    "seconds": 5.146,
+    "peak": 0.9,
+    "rmsDb": -18.8,
+    "bytes": 84824
+   }
+  ],
+  "fanfare_bulls": [
+   {
+    "file": "sfx-fanfare-bulls.m4a",
+    "seconds": 6.628,
+    "peak": 0.9,
+    "rmsDb": -20.8,
+    "bytes": 104226
+   }
+  ],
+  "fanfare_bears": [
+   {
+    "file": "sfx-fanfare-bears.m4a",
+    "seconds": 6.628,
+    "peak": 0.9,
+    "rmsDb": -21.8,
+    "bytes": 102719
+   }
+  ]
+ }
+}

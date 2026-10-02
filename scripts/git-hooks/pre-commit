@@ -1,0 +1,19 @@
+#!/bin/sh
+# Keep server and local-environment details out of commits (AGENTS.md §8). Patterns are local only:
+# private/deploy/forbidden-patterns.txt. Enable once per clone: git config core.hooksPath scripts/git-hooks
+top=$(git rev-parse --show-toplevel)
+list="$top/private/deploy/forbidden-patterns.txt"
+if git diff --cached --name-only --diff-filter=ACMR | grep -q '^private/'; then
+  echo "pre-commit: refusing to commit files under private/ (local only)" >&2
+  exit 1
+fi
+[ -f "$list" ] || exit 0 # scripts/check-public.sh still fails closed before any push
+pats=$(mktemp) && trap 'rm -f "$pats"' EXIT
+grep -v -e '^#' -e '^[[:space:]]*$' "$list" >"$pats"
+hits=$(git diff --cached -U0 --no-color --no-ext-diff | grep '^+' | grep -v '^+++' | grep -i -E -f "$pats")
+if [ -n "$hits" ]; then
+  echo "pre-commit: staged changes contain details listed in private/deploy/forbidden-patterns.txt:" >&2
+  printf '%s\n' "$hits" | cut -c1-200 >&2
+  echo "Move them to private/ (see docs/handoff/runbook.md). Do not bypass with --no-verify." >&2
+  exit 1
+fi

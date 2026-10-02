@@ -1,0 +1,147 @@
+{
+ "at": "2026-10-02T14:51:51.033Z",
+ "url": "http://localhost:4174/?sim&lang=zh",
+ "autoplay": {
+  "state": "running",
+  "ctxState": "running",
+  "loaded": true,
+  "buffers": 36,
+  "music": "calm",
+  "intensity": 0.202,
+  "sampleRate": 48000,
+  "hint": false
+ },
+ "button": {
+  "unlock": {
+   "state": "running",
+   "ctxState": "running",
+   "loaded": true,
+   "buffers": 36,
+   "music": "calm",
+   "intensity": 0.208,
+   "sampleRate": 48000,
+   "hint": false
+  },
+  "off": {
+   "state": "off",
+   "ctxState": "suspended",
+   "loaded": true,
+   "buffers": 36,
+   "music": "calm",
+   "intensity": 0.209,
+   "sampleRate": 48000,
+   "hint": false
+  },
+  "back": {
+   "state": "running",
+   "ctxState": "running",
+   "loaded": true,
+   "buffers": 36,
+   "music": "calm",
+   "intensity": 0.216,
+   "sampleRate": 48000,
+   "hint": false
+  }
+ },
+ "locked": {
+  "state": "locked",
+  "ctxState": "suspended",
+  "loaded": true,
+  "buffers": 36,
+  "music": "idle",
+  "intensity": 0.202,
+  "sampleRate": 48000,
+  "hint": true
+ },
+ "on": {
+  "state": "running",
+  "ctxState": "running",
+  "loaded": true,
+  "buffers": 36,
+  "music": "calm",
+  "intensity": 0.208,
+  "sampleRate": 48000,
+  "hint": false
+ },
+ "battle": {
+  "state": "running",
+  "ctxState": "running",
+  "loaded": true,
+  "buffers": 36,
+  "music": "battle",
+  "intensity": 0.809,
+  "sampleRate": 48000,
+  "hint": false
+ },
+ "vic": {
+  "state": "running",
+  "ctxState": "running",
+  "loaded": true,
+  "buffers": 36,
+  "music": "victory",
+  "intensity": 0.917,
+  "sampleRate": 48000,
+  "hint": false
+ },
+ "off": {
+  "state": "off",
+  "pref": "off"
+ },
+ "back": {
+  "state": "running",
+  "ctxState": "running",
+  "loaded": true,
+  "buffers": 36,
+  "music": "victory",
+  "intensity": 0.908,
+  "sampleRate": 48000,
+  "hint": false
+ },
+ "errors": [],
+ "levels": {
+  "seconds": 36,
+  "sampleRate": 48000,
+  "peak": 0.8282,
+  "rmsDb": -17.9,
+  "windowsDb": [
+   -17.3,
+   -14.1,
+   -15.7,
+   -27.4,
+   -29.1,
+   -33.1,
+   -29,
+   -28.4,
+   -24.2,
+   -24.9,
+   -27.9,
+   -27.3,
+   -16.4,
+   -17.6,
+   -21.3,
+   -24.2,
+   -24.3,
+   -15.7,
+   -15.1,
+   -14.2,
+   -13.2,
+   -15,
+   -16.9,
+   -18.8,
+   -20.9,
+   -18.9,
+   -16.5,
+   -14.4,
+   -16,
+   -18.1,
+   -18.1,
+   -18.5,
+   -18.2,
+   -18.2,
+   -17.8,
+   -18.1
+  ],
+  "bedDb": -27.6,
+  "hitsDb": -11.4
+ }
+}

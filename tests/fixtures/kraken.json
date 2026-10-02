@@ -1,0 +1,418 @@
+{
+ "status:update": [
+  {
+   "channel": "status",
+   "type": "update",
+   "data": [
+    {
+     "version": "2.0.10",
+     "system": "online",
+     "api_version": "v2",
+     "connection_id": 5997687668643467000,
+     "upcoming_maintenance": [
+      {
+       "affected_services": [
+        "spot_trading",
+        "spot_fix",
+        "spot_ws"
+       ],
+       "cancel_before_utc": "2026-10-05T08:55:00.000000Z",
+       "event_id": 33,
+       "expected_end_utc": "2026-10-05T10:00:00.000000Z",
+       "expected_start_utc": "2026-10-05T09:00:00.000000Z",
+       "order_submission": "allowed",
+       "phase": "announced",
+       "recommended_action": "continue",
+       "source_url": "https://stspg.io/1w11k0cnnv3j",
+       "time_to_start_s": 238682,
+       "title": "Order Entry System Maintenance"
+      }
+     ],
+     "emergency": []
+    }
+   ]
+  }
+ ],
+ "method:subscribe:": [
+  {
+   "method": "subscribe",
+   "result": {
+    "channel": "book",
+    "depth": 100,
+    "snapshot": true,
+    "symbol": "ETH/USD"
+   },
+   "success": true,
+   "time_in": "2026-10-02T14:41:58.094254Z",
+   "time_out": "2026-10-02T14:41:58.094297Z"
+  },
+  {
+   "method": "subscribe",
+   "result": {
+    "channel": "trade",
+    "snapshot": false,
+    "symbol": "ETH/USD"
+   },
+   "success": true,
+   "time_in": "2026-10-02T14:41:58.094327Z",
+   "time_out": "2026-10-02T14:41:58.094349Z"
+  },
+  {
+   "method": "subscribe",
+   "result": {
+    "channel": "ticker",
+    "event_trigger": "trades",
+    "snapshot": true,
+    "symbol": "ETH/USD"
+   },
+   "success": true,
+   "time_in": "2026-10-02T14:41:58.094369Z",
+   "time_out": "2026-10-02T14:41:58.094387Z"
+  }
+ ],
+ "ticker:snapshot": [
+  {
+   "channel": "ticker",
+   "type": "snapshot",
+   "data": [
+    {
+     "symbol": "ETH/USD",
+     "bid": 2726.66,
+     "bid_qty": 2.2521898,
+     "ask": 2726.67,
+     "ask_qty": 0.00181818,
+     "last": 2726.06,
+     "volume": 42371.72998091,
+     "vwap": 2726.17,
+     "low": 2672.76,
+     "high": 2776.46,
+     "change": 34.73,
+     "change_pct": 1.29,
+     "trades": 57224,
+     "timestamp": "2026-10-02T14:41:57.867481Z"
+    }
+   ]
+  },
+  {
+   "channel": "ticker",
+   "type": "snapshot",
+   "data": [
+    {
+     "symbol": "USDT/USD",
+     "bid": 0.9998,
+     "bid_qty": 442895.75380145,
+     "ask": 0.99981,
+     "ask_qty": 494358.23114667,
+     "last": 0.9998,
+     "volume": 156665364.0584992,
+     "vwap": 0.99966,
+     "low": 0.99943,
+     "high": 0.9999,
+     "change": 0.00015,
+     "change_pct": 0.02,
+     "trades": 33174,
+     "timestamp": "2026-10-02T14:41:54.405007Z"
+    }
+   ]
+  }
+ ],
+ "book:snapshot": [
+  {
+   "channel": "book",
+   "type": "snapshot",
+   "data": [
+    {
+     "symbol": "ETH/USD",
+     "bids": [
+      {
+       "price": 2726.66,
+       "qty": 2.2521898
+      },
+      {
+       "price": 2726.54,
+       "qty": 0.60549189
+      },
+      {
+       "price": 2726.53,
+       "qty": 0.54739923
+      },
+      {
+       "price": 2726.52,
+       "qty": 1.83383325
+      },
+      {
+       "price": 2726.19,
+       "qty": 0.52667031
+      },
+      {
+       "price": 2726.15,
+       "qty": 0.47001888
+      },
+      {
+       "price": 2726.14,
+       "qty": 1.03511754
+      },
+      {
+       "price": 2726.05,
+       "qty": 6.34301322
+      },
+      {
+       "price": 2726,
+       "qty": 8.96693194
+      },
+      {
+       "price": 2725.95,
+       "qty": 4.76994468
+      },
+      {
+       "price": 2725.94,
+       "qty": 31.27781051
+      },
+      {
+       "price": 2725.93,
+       "qty": 82.90739405
+      }
+     ],
+     "asks": [
+      {
+       "price": 2726.67,
+       "qty": 0.00181818
+      },
+      {
+       "price": 2726.69,
+       "qty": 0.024433
+      },
+      {
+       "price": 2726.82,
+       "qty": 0.47001888
+      },
+      {
+       "price": 2726.9,
+       "qty": 1.85285791
+      },
+      {
+       "price": 2726.91,
+       "qty": 0.013
+      },
+      {
+       "price": 2727.01,
+       "qty": 1.23807904
+      },
+      {
+       "price": 2727.02,
+       "qty": 4.93931619
+      },
+      {
+       "price": 2727.11,
+       "qty": 5.47758593
+      },
+      {
+       "price": 2727.12,
+       "qty": 18.49939203
+      },
+      {
+       "price": 2727.16,
+       "qty": 0.016
+      },
+      {
+       "price": 2727.24,
+       "qty": 2.81820061
+      },
+      {
+       "price": 2727.25,
+       "qty": 9.14519884
+      }
+     ],
+     "checksum": 876248236,
+     "timestamp": "2026-10-02T14:41:58.148689Z"
+    }
+   ]
+  }
+ ],
+ "book:update": [
+  {
+   "channel": "book",
+   "type": "update",
+   "data": [
+    {
+     "symbol": "ETH/USD",
+     "bids": [],
+     "asks": [
+      {
+       "price": 2727.61,
+       "qty": 0
+      },
+      {
+       "price": 2736.56,
+       "qty": 39.20009327
+      }
+     ],
+     "checksum": 876248236,
+     "timestamp": "2026-10-02T14:41:58.184974Z"
+    }
+   ]
+  },
+  {
+   "channel": "book",
+   "type": "update",
+   "data": [
+    {
+     "symbol": "ETH/USD",
+     "bids": [],
+     "asks": [
+      {
+       "price": 2727.24,
+       "qty": 8.87311954
+      }
+     ],
+     "checksum": 876248236,
+     "timestamp": "2026-10-02T14:41:58.184974Z"
+    }
+   ]
+  },
+  {
+   "channel": "book",
+   "type": "update",
+   "data": [
+    {
+     "symbol": "ETH/USD",
+     "bids": [
+      {
+       "price": 2725.37,
+       "qty": 1.12138633
+      }
+     ],
+     "asks": [],
+     "checksum": 876248236,
+     "timestamp": "2026-10-02T14:41:58.214791Z"
+    }
+   ]
+  }
+ ],
+ "heartbeat:": [
+  {
+   "channel": "heartbeat"
+  },
+  {
+   "channel": "heartbeat"
+  },
+  {
+   "channel": "heartbeat"
+  }
+ ],
+ "ticker:update": [
+  {
+   "channel": "ticker",
+   "type": "update",
+   "data": [
+    {
+     "symbol": "USDT/USD",
+     "bid": 0.9998,
+     "bid_qty": 443020.68291842,
+     "ask": 0.99981,
+     "ask_qty": 494358.23114667,
+     "last": 0.9998,
+     "volume": 156653245.93443057,
+     "vwap": 0.99966,
+     "low": 0.99943,
+     "high": 0.9999,
+     "change": 0.00015,
+     "change_pct": 0.02,
+     "trades": 33161,
+     "timestamp": "2026-10-02T14:42:00.717021Z"
+    }
+   ]
+  },
+  {
+   "channel": "ticker",
+   "type": "update",
+   "data": [
+    {
+     "symbol": "USDT/USD",
+     "bid": 0.9998,
+     "bid_qty": 439393.95651842,
+     "ask": 0.99981,
+     "ask_qty": 490731.50474667,
+     "last": 0.99981,
+     "volume": 156654145.93443057,
+     "vwap": 0.99966,
+     "low": 0.99943,
+     "high": 0.9999,
+     "change": 0.00016,
+     "change_pct": 0.02,
+     "trades": 33162,
+     "timestamp": "2026-10-02T14:42:01.269453Z"
+    }
+   ]
+  },
+  {
+   "channel": "ticker",
+   "type": "update",
+   "data": [
+    {
+     "symbol": "USDT/USD",
+     "bid": 0.9998,
+     "bid_qty": 439393.95651842,
+     "ask": 0.99981,
+     "ask_qty": 489831.50474667,
+     "last": 0.99981,
+     "volume": 156654239.93443057,
+     "vwap": 0.99966,
+     "low": 0.99943,
+     "high": 0.9999,
+     "change": 0.00016,
+     "change_pct": 0.02,
+     "trades": 33163,
+     "timestamp": "2026-10-02T14:42:01.695407Z"
+    }
+   ]
+  }
+ ],
+ "trade:update": [
+  {
+   "channel": "trade",
+   "type": "update",
+   "data": [
+    {
+     "symbol": "ETH/USD",
+     "side": "buy",
+     "price": 2726.67,
+     "qty": 0.00181818,
+     "ord_type": "limit",
+     "trade_id": 67140668,
+     "timestamp": "2026-10-02T14:42:05.057293Z"
+    }
+   ]
+  },
+  {
+   "channel": "trade",
+   "type": "update",
+   "data": [
+    {
+     "symbol": "ETH/USD",
+     "side": "buy",
+     "price": 2726.9,
+     "qty": 0.09171687,
+     "ord_type": "limit",
+     "trade_id": 67140669,
+     "timestamp": "2026-10-02T14:42:06.619335Z"
+    }
+   ]
+  },
+  {
+   "channel": "trade",
+   "type": "update",
+   "data": [
+    {
+     "symbol": "ETH/USD",
+     "side": "buy",
+     "price": 2726.91,
+     "qty": 0.013,
+     "ord_type": "limit",
+     "trade_id": 67140670,
+     "timestamp": "2026-10-02T14:42:06.908299Z"
+    }
+   ]
+  }
+ ]
+}

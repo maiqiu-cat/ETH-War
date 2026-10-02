@@ -1,0 +1,180 @@
+{
+ "at": "2026-10-02T23:06:52.446Z",
+ "seconds": 60,
+ "rows": [
+  {
+   "venue": "coinbase",
+   "sockets": "trades:1x book:1x",
+   "msgs": 1026,
+   "trades": 32,
+   "bookLv": "1714/1159",
+   "spreadUsd": 0.04,
+   "priceUsd": 2666.71,
+   "vsIndexBps": 0.3,
+   "weight": "13.4%"
+  },
+  {
+   "venue": "kraken",
+   "sockets": "spot:1x",
+   "msgs": 2811,
+   "trades": 25,
+   "bookLv": "500/500",
+   "spreadUsd": 0.01,
+   "priceUsd": 2666.67,
+   "vsIndexBps": 0.2,
+   "weight": "5.7%"
+  },
+  {
+   "venue": "okx",
+   "sockets": "spot+liq:1x",
+   "msgs": 847,
+   "trades": 27,
+   "bookLv": "400/400",
+   "spreadUsd": 0.01,
+   "priceUsd": 2666.87,
+   "vsIndexBps": 0.9,
+   "weight": "19.6%"
+  },
+  {
+   "venue": "bybit",
+   "sockets": "spot:1x liq:1x",
+   "msgs": 553,
+   "trades": 42,
+   "bookLv": "200/200",
+   "spreadUsd": 0.01,
+   "priceUsd": 2666.56,
+   "vsIndexBps": -0.2,
+   "weight": "13.9%"
+  },
+  {
+   "venue": "bitstamp",
+   "sockets": "spot:1x",
+   "msgs": 242,
+   "trades": 13,
+   "bookLv": "100/100",
+   "spreadUsd": 0.01,
+   "priceUsd": 2666.55,
+   "vsIndexBps": -0.3,
+   "weight": "0.0%"
+  },
+  {
+   "venue": "binance",
+   "sockets": "spot:1x liq:1x",
+   "msgs": 648,
+   "trades": 62,
+   "bookLv": "20/20",
+   "spreadUsd": 0.01,
+   "priceUsd": 2666.51,
+   "vsIndexBps": -0.4,
+   "weight": "47.3%"
+  },
+  {
+   "venue": "deribit",
+   "sockets": "options:1x",
+   "msgs": 5,
+   "trades": 0,
+   "bookLv": "-",
+   "spreadUsd": "-",
+   "priceUsd": "-",
+   "vsIndexBps": "-",
+   "weight": "-"
+  }
+ ],
+ "index": {
+  "price": 2666.623473703,
+  "open24h": 2701.366685750251,
+  "venues": [
+   {
+    "ex": "coinbase",
+    "priceUsd": 2666.71,
+    "weight": 325988366.3218062,
+    "included": true
+   },
+   {
+    "ex": "kraken",
+    "priceUsd": 2666.67,
+    "weight": 137606296.48790294,
+    "included": true
+   },
+   {
+    "ex": "okx",
+    "priceUsd": 2666.8697976000003,
+    "weight": 476366064.71288514,
+    "included": true
+   },
+   {
+    "ex": "bybit",
+    "priceUsd": 2666.559872,
+    "weight": 337386267.33292824,
+    "included": true
+   },
+   {
+    "ex": "bitstamp",
+    "priceUsd": 2666.55,
+    "weight": 512581.5758013661,
+    "included": true
+   },
+   {
+    "ex": "binance",
+    "priceUsd": 2666.509884,
+    "weight": 1148459914.9244537,
+    "included": true
+   }
+  ]
+ },
+ "liq": {
+  "bid": 32289163.27971226,
+  "ask": 22133549.143357135
+ },
+ "flow": {
+  "buy": 144962.06810119862,
+  "sell": 25516.73923594596
+ },
+ "events": [
+  {
+   "kind": "option",
+   "type": "optSell",
+   "ex": "deribit",
+   "bull": false,
+   "usd": 909.3344699999999,
+   "price": 2666.67,
+   "ts": 1790982377333,
+   "label": "Large option sell",
+   "detail": "ETH-9OCT26-2650-P",
+   "id": 1
+  }
+ ],
+ "checks": [
+  [
+   ">= 3 spot venues in index",
+   true,
+   "6: coinbase, kraken, okx, bybit, bitstamp, binance"
+  ],
+  [
+   "every included venue within 30 bps of index",
+   true,
+   ""
+  ],
+  [
+   "USDT/USD rate received",
+   true,
+   "0.99976"
+  ],
+  [
+   ">= 3 books populated",
+   true,
+   ""
+  ],
+  [
+   "no crossed books observed",
+   true,
+   ""
+  ],
+  [
+   "aggregated depth ±1% > $5M per side",
+   true,
+   ""
+  ]
+ ],
+ "crossed": []
+}

@@ -1,0 +1,435 @@
+{
+ "at": "2026-10-02T23:35:41.841Z",
+ "runs": [
+  {
+   "name": "sim",
+   "query": "?sim&light=golden&seed=11&lang=zh",
+   "webgl": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+   "shots": [
+    {
+     "id": "1-overview",
+     "path": "verification/sim-1-overview.png",
+     "stats": {
+      "fps": 39.3,
+      "frames": 395,
+      "layoutUnits": 911,
+      "army": {
+       "soldiers": 885,
+       "tanks": 22,
+       "total": 1033
+      },
+      "index": 2721.6,
+      "venuesInIndex": [
+       "sim"
+      ],
+      "round": {
+       "id": 1,
+       "startPrice": 2720.228389442913,
+       "bearsWinAt": 2713.43,
+       "bullsWinAt": 2727.03,
+       "startedAt": 1790984142425
+      },
+      "feedItems": 30,
+      "status": "大军正开赴前线",
+      "shot": "overview",
+      "banner": "战斗开始",
+      "lang": "zh-CN",
+      "caption": "ETH/USD · 跨交易所聚合现货",
+      "title": "以太坊战争",
+      "history": []
+     }
+    },
+    {
+     "id": "2-front-closeup",
+     "path": "verification/sim-2-front-closeup.png",
+     "stats": {
+      "fps": 54,
+      "frames": 627,
+      "layoutUnits": 1077,
+      "army": {
+       "soldiers": 1058,
+       "tanks": 19,
+       "total": 1636
+      },
+      "index": 2727.37,
+      "venuesInIndex": [
+       "sim"
+      ],
+      "round": {
+       "id": 1,
+       "startPrice": 2720.228389442913,
+       "bearsWinAt": 2713.43,
+       "bullsWinAt": 2727.03,
+       "startedAt": 1790984142425,
+       "winner": "bulls",
+       "endedAt": 1790984156130
+      },
+      "feedItems": 52,
+      "status": "牛军猛攻熊方大本营",
+      "shot": "event",
+      "banner": "牛方胜利",
+      "lang": "zh-CN",
+      "caption": "ETH/USD · 跨交易所聚合现货",
+      "title": "以太坊战争",
+      "history": [
+       "#1 bulls"
+      ]
+     }
+    },
+    {
+     "id": "3-wide",
+     "path": "verification/sim-3-wide.png",
+     "stats": {
+      "fps": 44.3,
+      "frames": 737,
+      "layoutUnits": 1386,
+      "army": {
+       "soldiers": 1361,
+       "tanks": 22,
+       "total": 1644
+      },
+      "index": 2730.21,
+      "venuesInIndex": [
+       "sim"
+      ],
+      "round": {
+       "id": 1,
+       "startPrice": 2720.228389442913,
+       "bearsWinAt": 2713.43,
+       "bullsWinAt": 2727.03,
+       "startedAt": 1790984142425,
+       "winner": "bulls",
+       "endedAt": 1790984156130
+      },
+      "feedItems": 60,
+      "status": "牛军猛攻熊方大本营",
+      "shot": "event",
+      "banner": "牛方胜利",
+      "lang": "zh-CN",
+      "caption": "ETH/USD · 跨交易所聚合现货",
+      "title": "以太坊战争",
+      "history": [
+       "#1 bulls"
+      ]
+     }
+    },
+    {
+     "id": "4-night",
+     "path": "verification/sim-4-night.png",
+     "stats": {
+      "fps": 41.3,
+      "frames": 837,
+      "layoutUnits": 1383,
+      "army": {
+       "soldiers": 1361,
+       "tanks": 22,
+       "total": 1671
+      },
+      "index": 2732.53,
+      "venuesInIndex": [
+       "sim"
+      ],
+      "round": {
+       "id": 1,
+       "startPrice": 2720.228389442913,
+       "bearsWinAt": 2713.43,
+       "bullsWinAt": 2727.03,
+       "startedAt": 1790984142425,
+       "winner": "bulls",
+       "endedAt": 1790984156130
+      },
+      "feedItems": 60,
+      "status": "牛军猛攻熊方大本营",
+      "shot": "event",
+      "banner": "牛方胜利",
+      "lang": "zh-CN",
+      "caption": "ETH/USD · 跨交易所聚合现货",
+      "title": "以太坊战争",
+      "history": [
+       "#1 bulls"
+      ]
+     }
+    },
+    {
+     "id": "5-later-round",
+     "path": "verification/sim-5-later-round.png",
+     "stats": {
+      "fps": 40.3,
+      "frames": 1140,
+      "layoutUnits": 924,
+      "army": {
+       "soldiers": 902,
+       "tanks": 22,
+       "total": 1092
+      },
+      "index": 2730.66,
+      "venuesInIndex": [
+       "sim"
+      ],
+      "round": {
+       "id": 2,
+       "startPrice": 2732.296281073552,
+       "bearsWinAt": 2725.4700000000003,
+       "bullsWinAt": 2739.13,
+       "startedAt": 1790984162132
+      },
+      "feedItems": 60,
+      "status": "大军正开赴前线",
+      "shot": "event",
+      "banner": "战斗开始",
+      "lang": "zh-CN",
+      "caption": "ETH/USD · 跨交易所聚合现货",
+      "title": "以太坊战争",
+      "history": [
+       "#1 bulls"
+      ]
+     }
+    }
+   ],
+   "errors": []
+  },
+  {
+   "name": "sim-rounds",
+   "query": "?sim&range=0.06&seed=5&light=day&lang=zh",
+   "webgl": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+   "shots": [
+    {
+     "id": "1-win",
+     "path": "verification/sim-rounds-1-win.png",
+     "stats": {
+      "fps": 40.3,
+      "frames": 574,
+      "layoutUnits": 599,
+      "army": {
+       "soldiers": 583,
+       "tanks": 16,
+       "total": 991
+      },
+      "index": 2721.6,
+      "venuesInIndex": [
+       "sim"
+      ],
+      "round": {
+       "id": 1,
+       "startPrice": 2719.882788202385,
+       "bearsWinAt": 2718.25,
+       "bullsWinAt": 2721.51,
+       "startedAt": 1790984169112,
+       "winner": "bulls",
+       "endedAt": 1790984181114
+      },
+      "feedItems": 38,
+      "status": "牛军猛攻熊方大本营",
+      "shot": "frontline",
+      "banner": "牛方胜利",
+      "lang": "zh-CN",
+      "caption": "ETH/USD · 跨交易所聚合现货",
+      "title": "以太坊战争",
+      "history": [
+       "#1 bulls"
+      ]
+     }
+    },
+    {
+     "id": "2-next-round",
+     "path": "verification/sim-rounds-2-next-round.png",
+     "stats": {
+      "fps": 42.3,
+      "frames": 849,
+      "layoutUnits": 1379,
+      "army": {
+       "soldiers": 1360,
+       "tanks": 19,
+       "total": 1910
+      },
+      "index": 2728.03,
+      "venuesInIndex": [
+       "sim"
+      ],
+      "round": {
+       "id": 2,
+       "startPrice": 2724.5115600251347,
+       "bearsWinAt": 2722.88,
+       "bullsWinAt": 2726.15,
+       "startedAt": 1790984187362,
+       "winner": "bulls",
+       "endedAt": 1790984188362
+      },
+      "feedItems": 55,
+      "status": "大军正开赴前线",
+      "shot": "frontline",
+      "banner": "牛方胜利",
+      "lang": "zh-CN",
+      "caption": "ETH/USD · 跨交易所聚合现货",
+      "title": "以太坊战争",
+      "history": [
+       "#2 bulls",
+       "#1 bulls"
+      ]
+     }
+    }
+   ],
+   "errors": []
+  },
+  {
+   "name": "live",
+   "query": "?light=golden&lang=en",
+   "webgl": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+   "shots": [
+    {
+     "id": "1-overview",
+     "path": "verification/live-1-overview.png",
+     "stats": {
+      "fps": 60,
+      "frames": 753,
+      "layoutUnits": 1464,
+      "army": {
+       "soldiers": 1415,
+       "tanks": 49,
+       "total": 1499
+      },
+      "index": 2667.29,
+      "venuesInIndex": [
+       "coinbase",
+       "kraken",
+       "okx",
+       "bybit",
+       "bitstamp",
+       "binance"
+      ],
+      "round": {
+       "id": 1,
+       "startPrice": 2667.91,
+       "bearsWinAt": 2661.2400000000002,
+       "bullsWinAt": 2674.58,
+       "startedAt": 1790984191444
+      },
+      "feedItems": 0,
+      "status": "Bears advancing",
+      "shot": "frontline",
+      "banner": "BATTLE BEGINS",
+      "lang": "en",
+      "caption": "ETH/USD · AGGREGATED SPOT",
+      "title": "ETH War",
+      "history": []
+     }
+    },
+    {
+     "id": "2-front-closeup",
+     "path": "verification/live-2-front-closeup.png",
+     "stats": {
+      "fps": 60,
+      "frames": 1039,
+      "layoutUnits": 1462,
+      "army": {
+       "soldiers": 1413,
+       "tanks": 49,
+       "total": 1489
+      },
+      "index": 2667.27,
+      "venuesInIndex": [
+       "coinbase",
+       "kraken",
+       "okx",
+       "bybit",
+       "bitstamp",
+       "binance"
+      ],
+      "round": {
+       "id": 1,
+       "startPrice": 2667.91,
+       "bearsWinAt": 2661.2400000000002,
+       "bullsWinAt": 2674.58,
+       "startedAt": 1790984191444
+      },
+      "feedItems": 0,
+      "status": "Bears advancing",
+      "shot": "charge",
+      "banner": "BATTLE BEGINS",
+      "lang": "en",
+      "caption": "ETH/USD · AGGREGATED SPOT",
+      "title": "ETH War",
+      "history": []
+     }
+    },
+    {
+     "id": "3-day",
+     "path": "verification/live-3-day.png",
+     "stats": {
+      "fps": 56.1,
+      "frames": 1197,
+      "layoutUnits": 1484,
+      "army": {
+       "soldiers": 1435,
+       "tanks": 49,
+       "total": 1516
+      },
+      "index": 2667.3,
+      "venuesInIndex": [
+       "coinbase",
+       "kraken",
+       "okx",
+       "bybit",
+       "bitstamp",
+       "binance"
+      ],
+      "round": {
+       "id": 1,
+       "startPrice": 2667.91,
+       "bearsWinAt": 2661.2400000000002,
+       "bullsWinAt": 2674.58,
+       "startedAt": 1790984191444
+      },
+      "feedItems": 1,
+      "status": "Bulls probing the line",
+      "shot": "charge",
+      "banner": "BATTLE BEGINS",
+      "lang": "en",
+      "caption": "ETH/USD · AGGREGATED SPOT",
+      "title": "ETH War",
+      "history": []
+     }
+    },
+    {
+     "id": "4-lang-toggle",
+     "path": "verification/live-4-lang-toggle.png",
+     "stats": {
+      "fps": 50.3,
+      "frames": 1273,
+      "layoutUnits": 1478,
+      "army": {
+       "soldiers": 1430,
+       "tanks": 48,
+       "total": 1522
+      },
+      "index": 2667.31,
+      "venuesInIndex": [
+       "coinbase",
+       "kraken",
+       "okx",
+       "bybit",
+       "bitstamp",
+       "binance"
+      ],
+      "round": {
+       "id": 1,
+       "startPrice": 2667.91,
+       "bearsWinAt": 2661.2400000000002,
+       "bullsWinAt": 2674.58,
+       "startedAt": 1790984191444
+      },
+      "feedItems": 1,
+      "status": "牛军试探防线",
+      "shot": "charge",
+      "banner": "战斗开始",
+      "lang": "zh-CN",
+      "caption": "ETH/USD · 跨交易所聚合现货",
+      "title": "以太坊战争",
+      "history": []
+     }
+    }
+   ],
+   "errors": []
+  }
+ ]
+}

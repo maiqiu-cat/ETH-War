@@ -1,0 +1,21 @@
+node_modules
+dist
+.DS_Store
+verification/*.png
+!verification/README.md
+tests/fixtures/_capture/
+deploy/out/
+verification/*.wav
+verification/mobile/
+audio-demos/
+tools/audio/.cache/
+tools/audio/.venv/
+
+# Server details, ops runbooks, backups: local only (see AGENTS.md)
+/private/
+
+# local junk
+.env*
+*.log
+__pycache__/
+tools/audio/out/
