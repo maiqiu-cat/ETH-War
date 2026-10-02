@@ -180,7 +180,7 @@ try {
       await page.emulateTimezone('UTC'); // screenshots must not show the local timezone
       const errors = [];
       page.on('pageerror', (e) => errors.push(e.message));
-      page.on('console', (m) => m.type() === 'error' && !/websocket|binance|bybit|ERR_/i.test(m.text()) && errors.push(m.text()));
+      page.on('console', (m) => m.type() === 'error' && !/websocket|binance|bybit|ERR_|cloudflareinsights/i.test(m.text()) && errors.push(m.text()));
       await page.setViewport({ width: vp.width, height: vp.height, deviceScaleFactor: vp.dpr, isMobile: !!vp.touch, hasTouch: !!vp.touch });
       await page.goto(`${BASE}/?sim&q=low&lang=${lang}`, { waitUntil: 'domcontentloaded' });
       await page.waitForFunction(() => /\d/.test(document.querySelector('[data-k=price]')?.textContent ?? ''), { timeout: 20000 }).catch(() => {});

@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-10-03 · 会话 3：访问统计（Cloudflare Web Analytics）
+
+- 用户给了 Cloudflare Web Analytics 的 beacon 片段（ETH War 自己的 token），要求装进站点。照母项目的做法（它的会话 20）做成 `src/analytics.ts`：`shouldLoadAnalytics(hostname, token, host)` 纯函数，token 必须是 32 位十六进制；生产域名还没定，所以 `ANALYTICS.host` 留空，此时只排除本地主机（localhost、127/8、::1、私网地址、`.local`/`.localhost`/`.test`/`.internal`），定了域名再填上只认它。`loadAnalytics()` 在 `main.ts` 最先调用，往 `<head>` 追加 beacon 脚本；本地开发、预览和验证脚本不会上报。
+- 这是 ADR 0008 的例外（站点唯一的第三方脚本），已写进 ADR、README「访问统计」、backlog 的部署项（CSP 要放行两个域名）、AGENTS.md 目录地图和 modules.md。三个验证脚本忽略含 `cloudflareinsights` 的控制台错误。
+- 新增 `tests/analytics.test.ts`（7 个），共 71 个单测。验证见 verification/README.md。
+
+---
+
 ## 2026-10-03 · 会话 2：市场动态面板长时间没数据 → 大单阈值自适应
 
 - **现象**：用户在 `pnpm dev` 下看实时行情，市场动态面板一直是空的。

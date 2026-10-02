@@ -1,5 +1,6 @@
 import '@fontsource-variable/inter';
 import './ui/styles.css';
+import { loadAnalytics } from './analytics';
 import { AudioEngine, renderPreview } from './audio/engine';
 import { netState } from './data/connectivity';
 import { ALL_SOURCES, createFeeds } from './data/feeds/exchanges';
@@ -13,6 +14,9 @@ import { autoLighting, type LightingName } from './render/lighting';
 import { World } from './render/world';
 import { fmtPrice } from './ui/format';
 import { Hud } from './ui/hud';
+
+// Page-view counting first, so it does not wait for the scene (no-op on local hosts).
+loadAnalytics();
 
 /* ----------------------------------------------------------------- Options */
 const params = new URLSearchParams(location.search);

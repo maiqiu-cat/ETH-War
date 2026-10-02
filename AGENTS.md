@@ -42,7 +42,7 @@
 cd "<项目目录>"
 pnpm install
 pnpm dev                       # http://localhost:5173（离线模拟：/?sim）
-pnpm test                      # Vitest 单测（60 个）
+pnpm test                      # Vitest 单测（71 个）
 pnpm build                     # tsc --noEmit + vite build
 pnpm verify:feeds [秒]         # Node 里跑真实交易所连接并做断言，默认 45 秒
 pnpm verify:screens            # 先 build；无头 Chrome 截图，收集 FPS 和报错
@@ -64,6 +64,7 @@ src/ui/         HUD、i18n 字典、格式化
 src/audio/      音频引擎；src/audio/assets/ 是预渲染的配乐和音效（m4a + manifest.json），见 docs/audio/README.md
 tools/audio/    生成配乐和音效的 Python 管线（MuseScore_General 音色库，MIT），见 tools/audio/README.md
 src/main.ts     装配与循环（250ms 逻辑 tick + 每帧渲染）
+src/analytics.ts  Cloudflare Web Analytics 的 beacon，本地主机不加载，生产域名定了填 ANALYTICS.host（ADR 0008 的例外）
 tests/          Vitest；tests/fixtures/ 是 2026-10-02 抓到的真实 ETH 交易所消息
 scripts/        verify-feeds.ts、screenshot.mjs、capture-fixtures.mjs、check-public.sh（推送前的敏感信息检查）、git-hooks/（core.hooksPath）
 （没有 deploy/：母项目的发布脚本指向它自己的生产站点，没有复制过来）

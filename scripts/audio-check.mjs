@@ -82,7 +82,7 @@ try {
   await page.setViewport({ width: 1440, height: 860 });
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
-  page.on('console', (m) => m.type() === 'error' && !/binance/i.test(m.text()) && errors.push(m.text()));
+  page.on('console', (m) => m.type() === 'error' && !/binance|cloudflareinsights/i.test(m.text()) && errors.push(m.text()));
   await page.goto(URL, { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => localStorage.removeItem('ew.sound'));
   const locked = await waitFor(page, (x) => x.loaded, 15000);

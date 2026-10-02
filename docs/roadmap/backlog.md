@@ -19,7 +19,7 @@
   - 通过一条 WS 下发三类数据：指数（几 Hz）、聚合深度分桶（2–4Hz）、事件流。
   - 前端把 `MarketHub` 的输入换成这条下发流，`src/game` 和 `src/render` 不用改。
 - [ ] **数据条款审查**：Coinbase、Kraken、OKX、Bybit、Bitstamp、Binance、Deribit 的行情再分发和展示条款。
-- [ ] **部署**：ETH War 还没有部署方案。可以参照母项目 Bitcoin Battle 的 `deploy/` 和 `docs/handoff/deploy.md`，换成自己的域名和站点目录后再用。
+- [ ] **部署**：ETH War 还没有部署方案。部署时把 `src/analytics.ts` 的 `ANALYTICS.host` 填成生产域名；如果加 Content-Security-Policy，要放行 `static.cloudflareinsights.com`（脚本）和 `cloudflareinsights.com`（beacon 上报）。可以参照母项目 Bitcoin Battle 的 `deploy/` 和 `docs/handoff/deploy.md`，换成自己的域名和站点目录后再用。
 
 ## P1：验证缺口和稳定性
 

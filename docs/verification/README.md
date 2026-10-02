@@ -5,7 +5,7 @@
 | 命令 | 检查什么 | 通过标准 | 耗时 |
 | --- | --- | --- | --- |
 | `pnpm build` | 类型检查（tsc strict，`noUnusedLocals/Parameters`）和打包 | 没有报错 | <5s |
-| `pnpm test` | 60 个单测（下面有清单） | 全部通过 | <1s |
+| `pnpm test` | 71 个单测（下面有清单） | 全部通过 | <1s |
 | `pnpm verify:feeds [秒]` | 用 Node 连真实交易所跑 N 秒（默认 45），输出每家的连接次数、断线、消息数、成交数、盘口档数、价差、相对指数的偏差和权重，并做 6 项断言 | 6 项全部 PASS；报告写入 `verification/feeds-report.json` | N 秒 |
 | `pnpm build && pnpm verify:screens` | 启动 vite preview，在无头 Chrome（1600×900）里跑 4 组场景并截图（页面时区固定为 UTC，截图里的时钟不是本机时间）；收集 FPS、单位数、指数、回合、横幅、语言和报错 | 输出 `No runtime errors`（Binance 451 已被过滤，正常情况下现在不应再出现），FPS 和单位数合理，**人工看过截图**；报告在 `verification/screens-report.json` | 约 2 分钟 |
 | `pnpm build && pnpm verify:audio` | 无头 Chrome，分三部分：A 允许自动播放时不用点击就出声；B0 喇叭按钮首次解锁、静音与恢复；B1–B7 拦截时提示、点击后出声、激战与胜利切换、M 键、无错误；C 用真实资源离线渲染 36 秒场景（`verification/audio-preview.wav`，不入库），要求不爆音、爆炸比配乐底层高 ≥8 dB | 全部 PASS，并且人工听一遍；公网较慢时还须排除模拟行情状态变化造成的假阴性 | 约 1 分钟 |
@@ -36,10 +36,11 @@
 | 文件 | 覆盖内容 |
 | --- | --- |
 | `parsers.test.ts`（18） | OKX：成交、盘口快照和增量（400 档）、ticker 成交额、爆仓过滤和换算（U 本位、币本位、posSide、net 模式）、订阅确认和 pong 被忽略。<br>Coinbase：主动方取反、跳过 last_match、ticker 成交额、level2 快照和增量。<br>Kraken：盘口、成交、两个 ticker（含 USDT/USD）。<br>Bybit：现货三个频道、allLiquidation 方向。<br>Bitstamp：type 0 是买、top100 快照。<br>Binance：真实 aggTrade（m 取反）、depth20 快照、ticker 成交额，forceOrder 方向（合成）。<br>Deribit：真实期权成交、其他币种被忽略、权利金换算。 |
-| `market.test.ts`（9） | OrderBook：快照和增量、截断、去交叉。<br>MarketHub：USDT 换算后按成交额加权、离群和过期剔除、大单合并、不同方向和隔太远的成交不合并、爆仓方向、深度分桶和过期盘口剔除。 |
+| `market.test.ts`（12） | OrderBook：快照和增量、截断、去交叉。<br>MarketHub：USDT 换算后按成交额加权、离群和过期剔除、大单合并、不同方向和隔太远的成交不合并、爆仓方向、深度分桶和过期盘口剔除、自适应大单阈值（清淡时下降并在转活跃时回升、不越过上下限、不开自适应时固定）。 |
 | `battle.test.ts`（12） | BattleEngine：开局、牛方胜、间歇、下一局、熊方胜。<br>narrate：8 种情形。<br>FieldMap：映射和反解、刻度步长、波动有界。<br>layoutArmies：key 唯一、前线/场内/储备拆分、在本方一侧、结果确定、列顺序是排列、niceUsd。 |
 | `connectivity.test.ts`（6） | 网络提示判断：离线、启动宽限期、宽限期后没有成交、有现货成交、运行中断流 20 秒、期权成交不算。 |
 | `i18n.test.ts`（4） | 两份字典的键集合一致、覆盖所有 StatusKey 和 FeedType、占位符一致、变量替换和切换语言。 |
+| `analytics.test.ts`（7） | 访问统计：本地主机一律不加载；没填生产域名时公网主机都加载，填了只认该域名；token 必须是 32 位十六进制；`loadAnalytics` 只在允许时往 head 追加带 token 的脚本。 |
 | `audio.test.ts`（12） | 空间化（距离和闷度）、限流、变体不重复、强度和平滑、平静/激战切换滞后、爆炸分级、呼啸对齐、避让深度、资源清单（文件存在、循环参数、变体数）、声音偏好读取。 |
 
 解析器测试读取的是 `tests/fixtures/*.json` 里的真实消息，见 [tests/fixtures/README.md](../../tests/fixtures/README.md)。
@@ -63,6 +64,7 @@
 | 2026-10-03 | `verify:feeds 60`（现货改连 `data-stream.binance.vision` 后） | 6/6 PASS。**6 家进入指数**（Coinbase、Kraken、OKX、Bybit、Bitstamp、Binance），Binance 权重 47%、偏差 -0.4bp，0 次断线；指数约 $2,667。dev 服务器上无头 Chrome 20 秒内 Binance 两条连接均 open、进入指数、面板显示 47% |
 | 2026-10-03 | `pnpm test`、`pnpm build` | 64/64（Binance 解析器改用真实夹具 `binance.json`，forceOrder 仍用合成消息）；构建通过 |
 | 2026-10-03（首次提交前） | `pnpm test`、`pnpm build`、`verify:screens`、`verify:mobile` | 64/64；构建通过；11 张截图 0 个非预期错误（Binance 已进入指数，不再有 451），页面时区改为 UTC 后重做了 `docs/screens/` 的 5 张 JPG（实盘 50–60 FPS，模拟 39–54 FPS，当时本机还开着 dev 服务器和浏览器）；24/24 PASS |
+| 2026-10-03（访问统计） | `pnpm test`、`pnpm build`、无头 Chrome 端到端 | 71/71；构建通过。用 `--host-resolver-rules` 把一个非本地域名指向本机的生产构建，并拦截对 cloudflareinsights 的请求：`127.0.0.1` 和 `localhost` 下不注入脚本、无请求；非本地域名下 `<head>` 出现带 token 的 beacon 脚本并发起 `beacon.min.js` 请求（已拦截，没有真的上报） |
 
 每次跑完有意义的验证，往这张表里加一行。Bitcoin Battle 时期的历史结果见母项目的同名文档。
 

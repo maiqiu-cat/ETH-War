@@ -35,7 +35,7 @@ async function run(name, query, shots) {
   await page.setViewport({ width: 1600, height: 900, deviceScaleFactor: 1 });
   const errors = [];
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
-  page.on('console', (m) => m.type() === 'error' && errors.push(`console: ${m.text()}`));
+  page.on('console', (m) => m.type() === 'error' && !/cloudflareinsights/i.test(m.text()) && errors.push(`console: ${m.text()}`));
   await page.goto(`http://localhost:${PORT}/${query}`, { waitUntil: 'domcontentloaded' });
   const webgl = await page.evaluate(() => {
     const c = document.querySelector('#app canvas');
