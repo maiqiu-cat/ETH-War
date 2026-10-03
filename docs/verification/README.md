@@ -66,6 +66,8 @@
 | 2026-10-03（首次提交前） | `pnpm test`、`pnpm build`、`verify:screens`、`verify:mobile` | 64/64；构建通过；11 张截图 0 个非预期错误（Binance 已进入指数，不再有 451），页面时区改为 UTC 后重做了 `docs/screens/` 的 5 张 JPG（实盘 50–60 FPS，模拟 39–54 FPS，当时本机还开着 dev 服务器和浏览器）；24/24 PASS |
 | 2026-10-03（访问统计） | `pnpm test`、`pnpm build`、无头 Chrome 端到端 | 71/71；构建通过。用 `--host-resolver-rules` 把一个非本地域名指向本机的生产构建，并拦截对 cloudflareinsights 的请求：`127.0.0.1` 和 `localhost` 下不注入脚本、无请求；非本地域名下 `<head>` 出现带 token 的 beacon 脚本并发起 `beacon.min.js` 请求（已拦截，没有真的上报） |
 | 2026-10-03（发布准备） | `pnpm test`、`pnpm build`、`deploy/package.sh`、`deploy/test/rehearse.sh` | 71/71；构建通过；发布包 `ethwar-20261003-0006-18ff777`（64 个文件全部 root:root，无 AppleDouble 文件，`site/` 与 `dist/` 一致，脚本里 token 出现 1 次，36 个音频，8 个图标/manifest/头像）；Docker 演练（Ubuntu 24.04 + nginx，文档专用地址）**REHEARSAL PASSED**，35 项断言全部 ok：预检识别其他站点、部署并记录基线、拒绝重复部署、第二版不重载并回滚、坏配置自动恢复、裸 `listen 443` 被拒绝、证书与 HTTPS、HTTPS 下纯内容发布不重载、回滚字节一致、purge 后指纹与基线一致。没有连生产服务器 |
+| 2026-10-03 UTC（首次发布前） | `pnpm test`、`pnpm build`、本机视觉/布局/音频、Docker 演练 | 源码 `af0515b`；71/71，构建通过；11 张截图全部 60 FPS、0 个非预期错误，全部已看；布局 24/24，竖横屏已看；音频自动检查 PASS（未人工试听）；发布包 `20261003-0014-af0515b` 为 64 个条目（60 个文件、4 个目录），全部 root:root，`site/` 与 `dist/` 一致；**REHEARSAL PASSED**，35 项断言全部通过 |
+| 2026-10-03 UTC（生产验收） | `20261003-0014-af0515b`，源码 `af0515b` | **AUDIT OK**，首次重载两次；HTTP 301 → HTTPS 200，首页/JS/8 个静态文件/抽检音频与发布包逐字节一致；线上布局 **24/24 PASS**，竖横屏已看；线上音频 A、B0–B7、C1–C3 全部 PASS（首次导航超时，原脚本重试通过；未人工试听）；实时页面 5 家现货进入指数、中英文切换正常、0 个运行时错误；beacon 脚本 200、RUM POST 204；`site.webmanifest` 的 `application/octet-stream` 类型已由用户明确接受。证书到期 `2026-12-31T23:25:13Z`；仪表盘和真机仍待确认。详见 [release-report-production.json](../../verification/release-report-production.json) |
 
 每次跑完有意义的验证，往这张表里加一行。Bitcoin Battle 时期的历史结果见母项目的同名文档。
 
@@ -75,7 +77,9 @@
 - **Binance**：现货已改用公开行情主机 `data-stream.binance.vision`，在 `stream.binance.com` 返回 451 的网络下也能连。爆仓流能连但没观察到事件。
 - **移动端和低配设备**：布局已由 `verify:mobile` 覆盖（2026-10-02 起全部通过），但真机只有用户 iPhone Chrome 的一张截图（修改前）；iPhone Safari、Android Chrome 真机的性能、触控和发热，以及低配设备均未测。
 - **模拟行情不能逐帧复现**：同一个 seed 下，价格路径还受定时器交错顺序影响。需要确定性测试的话，把 SimFeed 改成由外部按步驱动。
-- **线上 `verify:audio` 的时间依赖**：A/B2/B3 目前要求恰好处于平静或激战；公网资源加载慢时，模拟回合可能已经切到胜利。固定行情状态后再做断言，避免产品正常却报告失败。
+- **线上 `verify:audio` 的时间依赖和 URL 拼接**：A/B2/B3 目前要求恰好处于平静或激战；公网资源加载慢时，模拟回合可能已经切到胜利。当前脚本还会直接追加 `/?sim&lang=zh`，首次发布用低速、宽回合 URL 并在末尾保留 `&`（见发布手册）。后续固定行情状态并正确合并查询参数，避免假阴性。
+- **首次发布的 manifest MIME 差异**：HTTP 200、JSON 有效且字节匹配，但响应为 `application/octet-stream`；用户已接受。安装体验尚未实测，修正列入 backlog。
+- **音频人工试听与统计仪表盘**：本次音频自动检查全部通过；没有人工试听。线上 RUM POST 已返回 204，仪表盘是否显示访问仍待用户确认。
 
 ## 5. 人工验收清单（改画面或 HUD 时逐项看）
 

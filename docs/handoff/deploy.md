@@ -1,6 +1,8 @@
 # 发布到 ethwar.ondream.ai
 
-> **状态（2026-10-03）：尚未发布。** 发布机制、发布包和 Codex 手册已备好（本机 Docker 演练见 [verification/README.md](../verification/README.md)），DNS 已指向服务器，等用户授权执行首次发布。发布后在这里写当前版本、源码提交和上一版。这仍是浏览器直连交易所的原型；正式产品仍需服务端聚合和数据条款审查。
+> **状态（2026-10-03 UTC）：已首次发布。** 当前版本 `20261003-0014-af0515b`，源码提交 `af0515baf737a358cb922f0bbca45690042f732e`，上一版：无。公网首页 SHA-256 `f0066b7e9c72d49e22bbe8c887a64e1fbcd3bbf0fc5d28940fee885099a69ea1` 与发布包一致；`AUDIT OK`，首次发布重载两次（deploy、cert）。验收详情见 [verification/README.md](../verification/README.md) 和 [session-log.md](session-log.md)。这仍是浏览器直连交易所的原型；正式产品仍需服务端聚合和数据条款审查。
+
+`site.webmanifest` 当前以 `application/octet-stream` 返回，HTTP 200、JSON 有效且与发布包逐字节一致；用户明确接受这一差异继续发布。后续 MIME 修正记在 [backlog](../roadmap/backlog.md)，本次没有修改站点配置。
 
 机制整套来自母项目 Bitcoin War（它的 `deploy/` 在生产上发布过多次），只把站点名换成了 `ethwar`：发布包前缀 `ethwar-`，站点目录 `/var/www/ethwar.ondream.ai/`，Nginx 配置 `zz-ethwar.ondream.ai.conf`，发布根目录默认 `/root/ethwar-deploy/`。两个项目在服务器上互不相干。
 

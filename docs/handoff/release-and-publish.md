@@ -159,10 +159,10 @@ diff deploy/out/audit-before-$ID.txt deploy/out/audit-after-$ID.txt         # �
 curl -sS https://ethwar.ondream.ai/ | shasum -a 256; shasum -a 256 $K/site/index.html   # 两者相同
 curl -sS -o /dev/null -w '%{http_code}\n' http://ethwar.ondream.ai/            # 301
 MOBILE_CHECK_URL=https://ethwar.ondream.ai pnpm verify:mobile
-AUDIO_CHECK_URL='https://ethwar.ondream.ai/?sim&speed=0.01&range=99' pnpm verify:audio
+AUDIO_CHECK_URL='https://ethwar.ondream.ai/?sim&speed=0.01&range=99&' pnpm verify:audio
 ```
 
-音频检查要用这个低速、宽回合的受控 URL。用默认 URL 的话，公网下载音频期间模拟行情就会进入激战或胜利，A/B2/B3 会误报失败。访问统计的核对方法见本次手册。
+音频检查要用这个低速、宽回合的受控 URL。用默认 URL 的话，公网下载音频期间模拟行情就会进入激战或胜利，A/B2/B3 会误报失败。末尾的 `&` 必须保留：当前脚本还会追加 `/?sim&lang=zh`，分隔符保证 `range=99` 不会被拼成无效参数；URL 拼接问题记在 [backlog](../roadmap/backlog.md)。访问统计的核对方法见本次手册。
 
 ### 3.7 回滚
 

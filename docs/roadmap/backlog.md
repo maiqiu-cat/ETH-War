@@ -6,9 +6,9 @@
 
 | # | 问题 | 背景 |
 | --- | --- | --- |
-| Q1 | 这个项目的去向：独立发布，还是和 Bitcoin Battle 合并成一个可切换币种的站点？ | 两个项目现在是两份代码（ETH War 从 Bitcoin Battle 复制而来）。合并的话，把标的做成参数即可，差异见 mapping-rules.md 末尾的对照表 |
+| Q1 | 后续是否和 Bitcoin Battle 合并成一个可切换币种的站点？ | ETH War 已独立首次发布，两个项目现在是两份代码（ETH War 从 Bitcoin Battle 复制而来）。以后考虑合并时，把标的做成参数即可，差异见 mapping-rules.md 末尾的对照表 |
 | Q1b | ~~发布到哪个域名？~~ | 已定：`ethwar.ondream.ai`（2026-10-03，DNS 已生效），发布机制见 [deploy.md](../handoff/deploy.md) |
-| Q2 | 是否发布公开演示版、是否商用？ | 尚未发布。正式版需确认各交易所的**数据再分发条款**并做服务端聚合 |
+| Q2 | 是否推进正式版、是否商用？ | 浏览器直连交易所的原型已于 2026-10-03 UTC 首次公开发布。正式版需确认各交易所的**数据再分发条款**并做服务端聚合；许可变更仍由用户决定 |
 | Q3 | 美术方向：继续程序化低多边形，还是购买或外包 glTF 资源？ | 这是和原版画面差距最大的地方，预计需要 2–4 周或购买资源包 |
 | Q4 | 要不要做原版里的 Market chat（市场聊天）？ | 需要账号、后端和内容审核 |
 
@@ -19,7 +19,7 @@
   - 通过一条 WS 下发三类数据：指数（几 Hz）、聚合深度分桶（2–4Hz）、事件流。
   - 前端把 `MarketHub` 的输入换成这条下发流，`src/game` 和 `src/render` 不用改。
 - [ ] **数据条款审查**：Coinbase、Kraken、OKX、Bybit、Bitstamp、Binance、Deribit 的行情再分发和展示条款。
-- [ ] **首次发布到 ethwar.ondream.ai**：发布包、Docker 演练和 Codex 手册 2026-10-03 已备好（[deploy.md](../handoff/deploy.md)、[release-and-publish.md](../handoff/release-and-publish.md)），等用户授权执行。以后给 Nginx 加 Content-Security-Policy 时要放行 `static.cloudflareinsights.com`（脚本）和 `cloudflareinsights.com`（beacon 上报）。可以参照母项目 Bitcoin Battle 的 `deploy/` 和 `docs/handoff/deploy.md`，换成自己的域名和站点目录后再用。
+- [x] **首次发布到 ethwar.ondream.ai**：2026-10-03 UTC 已发布 `20261003-0014-af0515b`（源码 `af0515b`），`AUDIT OK`，首次重载两次；验收见 [session-log](../handoff/session-log.md)。以后给 Nginx 加 Content-Security-Policy 时要放行 `static.cloudflareinsights.com`（脚本）和 `cloudflareinsights.com`（beacon 上报）。
 
 ## P1：验证缺口和稳定性
 
@@ -31,11 +31,12 @@
 - [ ] **盘口校验**：OKX 用 `checksum` 和 `seqId/prevSeqId`，Kraken 用 CRC32 checksum。校验失败就重新订阅。
 - [ ] **Bitstamp 冷启动权重偏低**：可以先给一个 24h 成交额的先验值，或者等滚动窗口满了再纳入指数。
 - [ ] **模拟行情不确定**：把 `SimFeed` 改成由外部按步驱动，做到逐帧可复现，方便视觉回归测试。
-- [ ] **线上音频验收脚本去除时间依赖**：`verify:audio` 的 A/B2/B3 假设资源加载完时模拟行情仍在平静阶段；公网加载较慢时可能已经激战或胜利。固定模拟速度与回合范围，或在检查前强制受控状态。
+- [ ] **线上音频验收脚本去除时间依赖并正确合并 URL**：`verify:audio` 的 A/B2/B3 假设资源加载完时模拟行情仍在平静阶段；公网加载较慢时可能已经激战或胜利。固定模拟速度与回合范围，或在检查前强制受控状态。当前脚本直接追加 `/?sim&lang=zh`，已有查询参数会被拼坏；首次发布用 `?sim&speed=0.01&range=99&` 保留分隔符，后续改成标准 URL 参数合并。
+- [ ] **manifest MIME 类型**：当前 `site.webmanifest` 返回 `application/octet-stream`，HTTP 200、JSON 有效、字节与发布包一致。用户在首次发布时明确接受差异继续；以后修正 Nginx 模板时需重新演练，并在生产配置重载前获得当次授权。
 
 ## P1：性能和适配
 
-- [ ] **移动端实测**：布局沿用母项目（`verify:mobile` 24/24），待发布后在 iPhone Safari、Android Chrome 真机上看性能、触控和发热，并按设备自动选 `q=low`。
+- [ ] **移动端实测**：首次发布的线上布局已通过 `verify:mobile` 24/24；在 iPhone Safari、Android Chrome 真机上看性能、触控和发热，并按设备自动选 `q=low`。
 - [ ] **竖屏镜头取景**：手机竖屏的水平视角只有约 25°，只看得到战场中段，两端基地常在屏幕外。可以按宽高比加大竖屏的视角或拉远镜头（需要先看效果再定）。
 - [ ] **粒子只上传有效区间**：用 `BufferAttribute.addUpdateRange`。现在每帧上传 9000 个粒子的全部属性。
 - [ ] **远处单位 LOD**：改用点精灵或 billboard，以及按距离剔除。
@@ -63,3 +64,4 @@
 | 截图验证的 FPS 会受同时打开的浏览器标签页影响 | 测量误差 | `verify:screens` |
 | 首个回合要等指数出来，约 1–2 秒，期间场上为空 | 体验 | `main.ts` |
 | HUD 是手写 DOM，状态同步靠 `applyLang()` 等手动调用 | 维护成本 | ADR 0001 |
+| `site.webmanifest` 返回 `application/octet-stream` | 用户接受；JSON 和字节校验通过，安装体验尚未实测 | Nginx MIME 映射（backlog P1） |

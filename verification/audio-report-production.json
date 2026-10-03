@@ -1,13 +1,13 @@
 {
- "at": "2026-10-03T00:19:33.325Z",
- "url": "http://localhost:4174/?sim&lang=zh",
+ "at": "2026-10-03T00:43:47.789Z",
+ "url": "https://ethwar.ondream.ai/?sim&speed=0.01&range=99&/?sim&lang=zh",
  "autoplay": {
   "state": "running",
   "ctxState": "running",
   "loaded": true,
   "buffers": 36,
   "music": "calm",
-  "intensity": 0.202,
+  "intensity": 0.204,
   "sampleRate": 48000,
   "hint": false
  },
@@ -18,7 +18,7 @@
    "loaded": true,
    "buffers": 36,
    "music": "calm",
-   "intensity": 0.207,
+   "intensity": 0.206,
    "sampleRate": 48000,
    "hint": false
   },
@@ -28,7 +28,7 @@
    "loaded": true,
    "buffers": 36,
    "music": "calm",
-   "intensity": 0.208,
+   "intensity": 0.206,
    "sampleRate": 48000,
    "hint": false
   },
@@ -38,7 +38,7 @@
    "loaded": true,
    "buffers": 36,
    "music": "calm",
-   "intensity": 0.215,
+   "intensity": 0.208,
    "sampleRate": 48000,
    "hint": false
   }
@@ -49,7 +49,7 @@
   "loaded": true,
   "buffers": 36,
   "music": "idle",
-  "intensity": 0.202,
+  "intensity": 0.206,
   "sampleRate": 48000,
   "hint": true
  },
@@ -59,7 +59,7 @@
   "loaded": true,
   "buffers": 36,
   "music": "calm",
-  "intensity": 0.207,
+  "intensity": 0.208,
   "sampleRate": 48000,
   "hint": false
  },
@@ -69,7 +69,7 @@
   "loaded": true,
   "buffers": 36,
   "music": "battle",
-  "intensity": 0.81,
+  "intensity": 0.811,
   "sampleRate": 48000,
   "hint": false
  },
@@ -79,7 +79,7 @@
   "loaded": true,
   "buffers": 36,
   "music": "victory",
-  "intensity": 0.917,
+  "intensity": 0.918,
   "sampleRate": 48000,
   "hint": false
  },
@@ -93,7 +93,7 @@
   "loaded": true,
   "buffers": 36,
   "music": "victory",
-  "intensity": 0.908,
+  "intensity": 0.872,
   "sampleRate": 48000,
   "hint": false
  },

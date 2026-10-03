@@ -1,0 +1,173 @@
+{
+  "at": "2026-10-03T00:50:00.828509Z",
+  "release": "20261003-0014-af0515b",
+  "source": "af0515baf737a358cb922f0bbca45690042f732e",
+  "previous": null,
+  "url": "https://ethwar.ondream.ai/",
+  "archiveSha256": "d013281748a05c4806df48d7e167ada5c79b5a01c9f32d9ba35ca4e0dda8d565",
+  "indexSha256": "f0066b7e9c72d49e22bbe8c887a64e1fbcd3bbf0fc5d28940fee885099a69ea1",
+  "package": {
+    "entries": 64,
+    "files": 60,
+    "directories": 4,
+    "rootOwnership": true,
+    "matchesDist": true,
+    "audioFiles": 36,
+    "staticFiles": 8
+  },
+  "local": {
+    "tests": {
+      "passed": 71,
+      "total": 71
+    },
+    "build": "PASS",
+    "screens": {
+      "shots": 11,
+      "fps_min": 60,
+      "fps_max": 60,
+      "runtime_errors": 0,
+      "all_shots_viewed": true
+    },
+    "mobile": {
+      "passed": 24,
+      "total": 24,
+      "portrait_and_landscape_viewed": true
+    },
+    "audio": {
+      "automated_checks": "PASS",
+      "peak": 0.8282,
+      "hits_above_score_db": 16.2,
+      "manual_listening": "not performed"
+    },
+    "rehearsal": {
+      "passed": 35,
+      "result": "REHEARSAL PASSED"
+    }
+  },
+  "production": {
+    "audit": "AUDIT OK",
+    "nginxReloads": 2,
+    "certificateExpires": "2026-12-31T23:25:13Z",
+    "http": 301,
+    "https": 200,
+    "httpToHttps": true,
+    "indexMatchesKit": true,
+    "jsMatchesKit": true,
+    "immutableJsCache": true,
+    "staticFilesMatch": {
+      "passed": 8,
+      "total": 8
+    },
+    "audioSampleMatchesKit": true,
+    "mobile": {
+      "passed": 24,
+      "total": 24,
+      "portraitAndLandscapeViewed": true,
+      "report": "mobile-report-production.json"
+    },
+    "audio": {
+      "automatedChecks": "PASS",
+      "buffers": 36,
+      "peak": 0.8282,
+      "hitsAboveScoreDb": 16.2,
+      "manualListening": "not performed",
+      "report": "audio-report-production.json"
+    },
+    "browser": {
+      "checksPassed": 10,
+      "checksTotal": 10,
+      "chinese": {
+        "title": "以太坊战争",
+        "brand": "以太坊战争",
+        "lang": "zh-CN",
+        "caption": "ETH/USD · 跨交易所聚合现货",
+        "sim": false,
+        "price": 2674.787142554668,
+        "venuesInIndex": [
+          "coinbase",
+          "kraken",
+          "okx",
+          "bybit",
+          "binance"
+        ],
+        "fps": 60,
+        "frames": 683,
+        "army": {
+          "soldiers": 2153,
+          "tanks": 86,
+          "total": 2283
+        },
+        "feedItems": 3
+      },
+      "english": {
+        "title": "ETH War",
+        "brand": "ETH War",
+        "lang": "en",
+        "caption": "ETH/USD · AGGREGATED SPOT",
+        "sim": false,
+        "price": 2674.7654666839226,
+        "venuesInIndex": [
+          "coinbase",
+          "kraken",
+          "okx",
+          "bybit",
+          "binance"
+        ],
+        "fps": 60,
+        "frames": 757,
+        "army": {
+          "soldiers": 2173,
+          "tanks": 84,
+          "total": 2379
+        },
+        "feedItems": 3
+      },
+      "languagePreference": "en",
+      "screenshotsViewed": true,
+      "unexpectedErrors": []
+    },
+    "beacon": {
+      "tagCount": 1,
+      "sourceMatches": true,
+      "tokenMatches": true,
+      "responses": [
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+          "status": 200,
+          "method": "OPTIONS"
+        },
+        {
+          "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+          "status": 204,
+          "method": "POST"
+        }
+      ],
+      "requestFailures": []
+    }
+  },
+  "acceptedDifference": {
+    "file": "site.webmanifest",
+    "contentType": "application/octet-stream",
+    "status": 200,
+    "validJson": true,
+    "bytesMatchKit": true,
+    "explicitUserAcceptance": true,
+    "configChangedForDifference": false
+  },
+  "verificationNotes": [
+    "First production audio attempt passed autoplay but timed out during the next document navigation; the original script passed on retry.",
+    "The first browser probe timed out during document navigation. A later probe used an incorrect zh expectation for the source-defined zh-CN language marker; after correcting the temporary assertion, all ten checks passed.",
+    "The controlled AUDIO_CHECK_URL ends with & because the current script appends /?sim&lang=zh; the application and verification scripts were not changed."
+  ],
+  "pendingHumanAcceptance": [
+    "Cloudflare Web Analytics dashboard page views",
+    "iPhone Safari and Android Chrome performance, touch interaction and heat",
+    "Manual audio listening",
+    "Manifest installation experience"
+  ]
+}

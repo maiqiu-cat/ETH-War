@@ -16,7 +16,7 @@
 - 本地路径：用户本机的 ETH War 目录（目录名带空格，在 shell 里要加引号；下文记作 `<项目目录>`）
 - 许可：[PolyForm Noncommercial 1.0.0](LICENSE.md)，可以复制、分发、修改，不可以商用；第三方组件见 CREDITS.md。改许可证由用户决定
 - 远端：<https://github.com/maiqiu-cat/ETH-War>（**公开**，只有 `main`）。推送前必须通过 `pnpm check:public`，不要 force push、不要推 `main` 以外的分支或 tag。
-- 线上：`ethwar.ondream.ai`（DNS 已就绪，2026-10-03 尚未首次发布）。发布机制见 [docs/handoff/deploy.md](docs/handoff/deploy.md)，Codex 手册见 [docs/handoff/release-and-publish.md](docs/handoff/release-and-publish.md)；服务器参数和每次发布的手册只在本机 `private/`
+- 线上：`ethwar.ondream.ai`（2026-10-03 UTC 首次发布，当前版本见发布文档顶部）。发布机制见 [docs/handoff/deploy.md](docs/handoff/deploy.md)，Codex 手册见 [docs/handoff/release-and-publish.md](docs/handoff/release-and-publish.md)；服务器参数和每次发布的手册只在本机 `private/`
 
 ## 2. 阅读顺序
 
