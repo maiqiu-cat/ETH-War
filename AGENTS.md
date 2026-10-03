@@ -15,7 +15,8 @@
 
 - 本地路径：用户本机的 ETH War 目录（目录名带空格，在 shell 里要加引号；下文记作 `<项目目录>`）
 - 许可：[PolyForm Noncommercial 1.0.0](LICENSE.md)，可以复制、分发、修改，不可以商用；第三方组件见 CREDITS.md。改许可证由用户决定
-- 远端：<https://github.com/maiqiu-cat/ETH-War>（**公开**，只有 `main`）。推送前必须通过 `pnpm check:public`，不要 force push、不要推 `main` 以外的分支或 tag。没有部署，发布到哪里由用户决定（见 backlog 的「待用户决定」）
+- 远端：<https://github.com/maiqiu-cat/ETH-War>（**公开**，只有 `main`）。推送前必须通过 `pnpm check:public`，不要 force push、不要推 `main` 以外的分支或 tag。
+- 线上：`ethwar.ondream.ai`（DNS 已就绪，2026-10-03 尚未首次发布）。发布机制见 [docs/handoff/deploy.md](docs/handoff/deploy.md)，Codex 手册见 [docs/handoff/release-and-publish.md](docs/handoff/release-and-publish.md)；服务器参数和每次发布的手册只在本机 `private/`
 
 ## 2. 阅读顺序
 
@@ -33,6 +34,7 @@
 | 改 HUD 或多语言 | [docs/ui/hud-and-i18n.md](docs/ui/hud-and-i18n.md) |
 | 改完怎么验收 | [docs/verification/README.md](docs/verification/README.md) |
 | 和 Bitcoin Battle 的差异 | [docs/game-design/mapping-rules.md](docs/game-design/mapping-rules.md) 末尾的对照表 |
+| 生产发布、推送 GitHub | [docs/handoff/release-and-publish.md](docs/handoff/release-and-publish.md)（Codex 操作手册），机制见 [docs/handoff/deploy.md](docs/handoff/deploy.md) |
 
 全部文档索引：[docs/README.md](docs/README.md)
 
@@ -64,10 +66,11 @@ src/ui/         HUD、i18n 字典、格式化
 src/audio/      音频引擎；src/audio/assets/ 是预渲染的配乐和音效（m4a + manifest.json），见 docs/audio/README.md
 tools/audio/    生成配乐和音效的 Python 管线（MuseScore_General 音色库，MIT），见 tools/audio/README.md
 src/main.ts     装配与循环（250ms 逻辑 tick + 每帧渲染）
-src/analytics.ts  Cloudflare Web Analytics 的 beacon，本地主机不加载，生产域名定了填 ANALYTICS.host（ADR 0008 的例外）
+src/analytics.ts  Cloudflare Web Analytics 的 beacon，只在 ethwar.ondream.ai 加载（ADR 0008 的例外）
 tests/          Vitest；tests/fixtures/ 是 2026-10-02 抓到的真实 ETH 交易所消息
 scripts/        verify-feeds.ts、screenshot.mjs、capture-fixtures.mjs、check-public.sh（推送前的敏感信息检查）、git-hooks/（core.hooksPath）
-（没有 deploy/：母项目的发布脚本指向它自己的生产站点，没有复制过来）
+deploy/         发布到 ethwar.ondream.ai：package.sh、push.sh、render-nginx.sh、server/install.sh、nginx 模板、examples/、test/rehearse.sh（见 docs/handoff/deploy.md）
+private/        仅本机、不入库（.gitignore）：服务器参数、敏感词清单、发布手册（见 docs/handoff/deploy.md）
 verification/   脚本输出的报告（JSON 入库，PNG 不入库）
 docs/           全部开发文档（见 docs/README.md）
 ```
@@ -112,6 +115,7 @@ docs/           全部开发文档（见 docs/README.md）
 ## 8. 用户偏好
 
 - 用户用中文交流，回复用中文。
-- **ETH War 和 Bitcoin Battle 是两个独立的目录，不要混着改。** 母项目在 `~/Documents/Bitcoin Battle`，有自己的 git 仓库、公开的 GitHub 远端和生产站点；在这里干活时不要动它，更不要用它的 `deploy/` 脚本发布 ETH War（会覆盖母项目的线上站点）。
+- **ETH War 和 Bitcoin Battle 是两个独立的目录，不要混着改。** 母项目在 `~/Documents/Bitcoin Battle`，有自己的 git 仓库、公开的 GitHub 远端和生产站点；在这里干活时不要动它，也不要用它的 `deploy/` 脚本发布 ETH War。ETH War 的 `deploy/` 是从它复制并改名的，站点目录、Nginx 配置、发布根目录都分开。
+- **生产服务器上同时跑着其他项目的多个站点。没有用户在当次会话里明确说「可以发布」，就不要改那台服务器上的任何文件或配置，也不要发布。** 只读检查（`date`、`hostname`、`preflight`）之前也先问一声。发布流程和安全机制见 [docs/handoff/deploy.md](docs/handoff/deploy.md)；服务器参数和历次发布手册只在本机 `private/`。
 - 通用的改进（画面、音频、HUD）如果两边都要，先在一边做完验证，再照搬到另一边，并在两边的 session-log 里各记一笔。
-- 推送、部署都需要用户在当次会话里明确授权。**服务器和本机环境的细节只写进 `private/`，不要写进入库文件或提交信息**（本机网络配置也算）。仓库启用了 `scripts/git-hooks/`（新 clone 先 `git config core.hooksPath scripts/git-hooks`），敏感词清单在本机 `private/deploy/forbidden-patterns.txt`（从母项目复制，不入库）；提交统一用 UTC（`TZ=UTC git commit …`），推送前 `pnpm check:public` 必须通过；不要用 `--no-verify` 绕过。提交直接在 `main` 上，没有用 PR；不要 force push。
+- 推送、部署都需要用户在当次会话里明确授权。**服务器和本机环境的细节只写进 `private/`，不要写进入库文件或提交信息**：服务器 IP、主机名或 SSH 别名、SSH 用户和密钥、内网/VPN 地址、同机其他站点和容器、系统与软件版本、云服务商和 DNS 服务商、本机网络配置、本机时区（时间写 UTC）、本机绝对路径。入库的示例用 `deploy/examples/` 里的文档专用地址。仓库启用了 `scripts/git-hooks/`（新 clone 先 `git config core.hooksPath scripts/git-hooks`），敏感词清单在本机 `private/deploy/forbidden-patterns.txt`（从母项目复制，不入库）；提交统一用 UTC（`TZ=UTC git commit …`），推送前 `pnpm check:public` 必须通过；不要用 `--no-verify` 绕过。提交直接在 `main` 上，没有用 PR；不要 force push。

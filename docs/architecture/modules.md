@@ -12,7 +12,7 @@
 | `orderbook.ts` | 单个交易所的 L2 盘口 | `OrderBook` | 数据结构是 `Map<price, sizeETH>`。支持快照和增量；`truncate(depth)` 只保留最优 N 档；`prune(mid, pct)` 剪掉远端档位；`uncross` 删除没更新的那一侧的交叉档位。 |
 | `market.ts` | 行情中枢 | `MarketHub` `DEFAULT_MARKET_CONFIG` `FeedItem` `FeedType` `IndexResult` `DepthBuckets` | 实现 `FeedSink` 接口。主要方法：`computeIndex()`、`depth()`、`liquidity()`、`flow()`、`priceAgo()`、`realizedVolPct()`、`onEvent()`、`tick()`。时钟可以注入（构造参数 `now`），方便测试。 |
 | `connectivity.ts` | 网络提示的判断 | `netState` `NetState` `NET_GRACE_MS` `NET_QUIET_MS` | 纯函数：浏览器离线 → `offline`；启动 12 秒内还没有成交 → `checking`（不提示）；现货交易所 20 秒内有过成交 → `ok`；否则 → `unreachable`。Deribit 期权成交不算。`main.ts` 只在实时模式下每秒调用一次，并监听 `online` 和 `offline` 事件。 |
-| `src/analytics.ts` | Cloudflare Web Analytics 的 beacon 加载 | `shouldLoadAnalytics` `loadAnalytics` `ANALYTICS` | `shouldLoadAnalytics(hostname, token, host)` 是纯函数：token 必须是 32 位十六进制；`host` 填了就只认它，没填就排除本地主机（localhost、127/8、::1、私网地址、`.local`/`.test` 等）。`loadAnalytics()` 在 `main.ts` 最先调用，往 `<head>` 追加 beacon 脚本。token 是公开的站点标识，直接写在代码里。 |
+| `src/analytics.ts` | Cloudflare Web Analytics 的 beacon 加载 | `shouldLoadAnalytics` `loadAnalytics` `ANALYTICS` | `shouldLoadAnalytics(hostname, token, host)` 是纯函数：token 必须是 32 位十六进制；`host`（`ethwar.ondream.ai`）填了就只认它，没填就排除本地主机（localhost、127/8、::1、私网地址、`.local`/`.test` 等）。`loadAnalytics()` 在 `main.ts` 最先调用，往 `<head>` 追加 beacon 脚本。token 是公开的站点标识，直接写在代码里。 |
 | `sim.ts` | 离线模拟行情 | `SimFeed` `mulberry32` | 和真实适配器走同一个 `FeedSink`。价格是随机游走加偶发趋势；盘口每 250ms 发一次快照，含挂单墙；会产生成交（偶尔巨鲸单）、爆仓和期权成交。时间相关，同一个 seed 也不保证完全复现。 |
 
 ## src/game：纯逻辑（不准引入 three 或 DOM）

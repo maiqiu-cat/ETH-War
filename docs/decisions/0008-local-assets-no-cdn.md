@@ -13,7 +13,7 @@
 
 ## 例外（2026-10-03）
 
-访问统计用 Cloudflare Web Analytics 的 beacon（`src/analytics.ts`），这是站点唯一从第三方域名加载的脚本：本地主机（localhost、127.0.0.1、局域网地址、`.local` 等）一律不加载，所以本地开发、预览和验证脚本不会上报；生产域名定下来后改成只认该域名（`ANALYTICS.host`）。加载失败不影响页面，页面功能不依赖它。
+访问统计用 Cloudflare Web Analytics 的 beacon（`src/analytics.ts`），这是站点唯一从第三方域名加载的脚本：只在 `ethwar.ondream.ai` 这个域名下加载（`ANALYTICS.host`；本地主机还另有一道排除），所以本地开发、预览和验证脚本不会上报。加载失败不影响页面，页面功能不依赖它。
 
 ## 后果
 

@@ -7,7 +7,7 @@
 | # | 问题 | 背景 |
 | --- | --- | --- |
 | Q1 | 这个项目的去向：独立发布，还是和 Bitcoin Battle 合并成一个可切换币种的站点？ | 两个项目现在是两份代码（ETH War 从 Bitcoin Battle 复制而来）。合并的话，把标的做成参数即可，差异见 mapping-rules.md 末尾的对照表 |
-| Q1b | 发布到哪个域名？ | 仓库已在 <https://github.com/maiqiu-cat/ETH-War>（公开，2026-10-03）；没有复制母项目的 `deploy/`（那套脚本指向 Bitcoin Battle 的生产站点），域名待定 |
+| Q1b | ~~发布到哪个域名？~~ | 已定：`ethwar.ondream.ai`（2026-10-03，DNS 已生效），发布机制见 [deploy.md](../handoff/deploy.md) |
 | Q2 | 是否发布公开演示版、是否商用？ | 尚未发布。正式版需确认各交易所的**数据再分发条款**并做服务端聚合 |
 | Q3 | 美术方向：继续程序化低多边形，还是购买或外包 glTF 资源？ | 这是和原版画面差距最大的地方，预计需要 2–4 周或购买资源包 |
 | Q4 | 要不要做原版里的 Market chat（市场聊天）？ | 需要账号、后端和内容审核 |
@@ -19,7 +19,7 @@
   - 通过一条 WS 下发三类数据：指数（几 Hz）、聚合深度分桶（2–4Hz）、事件流。
   - 前端把 `MarketHub` 的输入换成这条下发流，`src/game` 和 `src/render` 不用改。
 - [ ] **数据条款审查**：Coinbase、Kraken、OKX、Bybit、Bitstamp、Binance、Deribit 的行情再分发和展示条款。
-- [ ] **部署**：ETH War 还没有部署方案。部署时把 `src/analytics.ts` 的 `ANALYTICS.host` 填成生产域名；如果加 Content-Security-Policy，要放行 `static.cloudflareinsights.com`（脚本）和 `cloudflareinsights.com`（beacon 上报）。可以参照母项目 Bitcoin Battle 的 `deploy/` 和 `docs/handoff/deploy.md`，换成自己的域名和站点目录后再用。
+- [ ] **首次发布到 ethwar.ondream.ai**：发布包、Docker 演练和 Codex 手册 2026-10-03 已备好（[deploy.md](../handoff/deploy.md)、[release-and-publish.md](../handoff/release-and-publish.md)），等用户授权执行。以后给 Nginx 加 Content-Security-Policy 时要放行 `static.cloudflareinsights.com`（脚本）和 `cloudflareinsights.com`（beacon 上报）。可以参照母项目 Bitcoin Battle 的 `deploy/` 和 `docs/handoff/deploy.md`，换成自己的域名和站点目录后再用。
 
 ## P1：验证缺口和稳定性
 

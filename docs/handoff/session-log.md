@@ -6,6 +6,16 @@
 
 ---
 
+## 2026-10-03 · 会话 4：发布到 ethwar.ondream.ai 的准备（Codex 手册）
+
+- 用户定下线上域名 `ethwar.ondream.ai`（DNS 已生效，DoH 核对过 A 记录），要求准备一份发布手册给 Codex。**本会话没有发布，也没有连过生产服务器。**
+- `deploy/` 从母项目 Bitcoin War 当前的 `main` 复制并改名（`battle` → `ethwar`：发布包前缀、站点目录、ACME 目录、Nginx 配置文件名、发布根目录、模板文件名、日志前缀），逻辑一字未改；`deploy/examples/` 用文档专用地址。服务器参数、敏感词清单和带服务器细节的手册放在本机 `private/`（`deploy/site.env`、`deploy/https-listen.conf`、`docs/handoff/{deploy,analytics,README}.md`、`docs/handoff/release-2026-10-03-first.md`）。
+- `src/analytics.ts` 的 `ANALYTICS.host` 填为 `ethwar.ondream.ai`（只在生产域名加载 beacon），相关文档随之更新。
+- 公开文档：新增 [deploy.md](deploy.md)（机制、安全设计、首次发布的两次重载、回滚）和 [release-and-publish.md](release-and-publish.md)（Codex 通用手册，含首次发布的 `cert` 阶段）；AGENTS.md 加回生产服务器的红线和目录地图；docs/README.md、runbook、backlog 对应更新。
+- 验证：见 verification/README.md（单测、构建、`deploy/package.sh` 打包、`deploy/test/rehearse.sh` 本机 Docker 演练）。
+
+---
+
 ## 2026-10-03 · 会话 3：访问统计（Cloudflare Web Analytics）
 
 - 用户给了 Cloudflare Web Analytics 的 beacon 片段（ETH War 自己的 token），要求装进站点。照母项目的做法（它的会话 20）做成 `src/analytics.ts`：`shouldLoadAnalytics(hostname, token, host)` 纯函数，token 必须是 32 位十六进制；生产域名还没定，所以 `ANALYTICS.host` 留空，此时只排除本地主机（localhost、127/8、::1、私网地址、`.local`/`.localhost`/`.test`/`.internal`），定了域名再填上只认它。`loadAnalytics()` 在 `main.ts` 最先调用，往 `<head>` 追加 beacon 脚本；本地开发、预览和验证脚本不会上报。

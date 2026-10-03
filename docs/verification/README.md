@@ -65,6 +65,7 @@
 | 2026-10-03 | `pnpm test`、`pnpm build` | 64/64（Binance 解析器改用真实夹具 `binance.json`，forceOrder 仍用合成消息）；构建通过 |
 | 2026-10-03（首次提交前） | `pnpm test`、`pnpm build`、`verify:screens`、`verify:mobile` | 64/64；构建通过；11 张截图 0 个非预期错误（Binance 已进入指数，不再有 451），页面时区改为 UTC 后重做了 `docs/screens/` 的 5 张 JPG（实盘 50–60 FPS，模拟 39–54 FPS，当时本机还开着 dev 服务器和浏览器）；24/24 PASS |
 | 2026-10-03（访问统计） | `pnpm test`、`pnpm build`、无头 Chrome 端到端 | 71/71；构建通过。用 `--host-resolver-rules` 把一个非本地域名指向本机的生产构建，并拦截对 cloudflareinsights 的请求：`127.0.0.1` 和 `localhost` 下不注入脚本、无请求；非本地域名下 `<head>` 出现带 token 的 beacon 脚本并发起 `beacon.min.js` 请求（已拦截，没有真的上报） |
+| 2026-10-03（发布准备） | `pnpm test`、`pnpm build`、`deploy/package.sh`、`deploy/test/rehearse.sh` | 71/71；构建通过；发布包 `ethwar-20261003-0006-18ff777`（64 个文件全部 root:root，无 AppleDouble 文件，`site/` 与 `dist/` 一致，脚本里 token 出现 1 次，36 个音频，8 个图标/manifest/头像）；Docker 演练（Ubuntu 24.04 + nginx，文档专用地址）**REHEARSAL PASSED**，35 项断言全部 ok：预检识别其他站点、部署并记录基线、拒绝重复部署、第二版不重载并回滚、坏配置自动恢复、裸 `listen 443` 被拒绝、证书与 HTTPS、HTTPS 下纯内容发布不重载、回滚字节一致、purge 后指纹与基线一致。没有连生产服务器 |
 
 每次跑完有意义的验证，往这张表里加一行。Bitcoin Battle 时期的历史结果见母项目的同名文档。
 

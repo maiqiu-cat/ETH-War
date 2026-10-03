@@ -11,6 +11,7 @@
 | ffmpeg | `/opt/homebrew/bin/ffmpeg` | 只用来分析参考视频 |
 | gh | 已登录 `maiqiu-cat`，有 `repo` 权限 | — |
 | 网络 | — | `stream.binance.com` 在当前网络返回 451，现货改用 `data-stream.binance.vision`，见 AGENTS.md 第 7 节 |
+| Docker | Docker Desktop | `deploy/test/rehearse.sh` 用它演练发布（ubuntu:24.04 镜像） |
 
 ## 从零开始
 
@@ -28,6 +29,7 @@ pnpm dev              # http://localhost:5173
 | 开发（热更新） | `pnpm dev`，然后打开 `http://localhost:5173/` |
 | 指定主机和端口，后台运行 | `./node_modules/.bin/vite --port 5173 --strictPort --host 127.0.0.1` |
 | 生产预览 | `pnpm build && pnpm preview`（端口 4173） |
+| 生产发布 | 见 [deploy.md](deploy.md) 和 [release-and-publish.md](release-and-publish.md)；需要用户授权 |
 | 离线演示 | `/?sim`，或 `/?sim&range=0.06`（几十秒就分出胜负） |
 | 低配设备 | `/?q=low`（关闭阴影和后期，像素比 1） |
 | 只用部分交易所 | `/?sources=coinbase,kraken,okx` |

@@ -82,7 +82,7 @@ src/ui/*                     HUD（价格、战况条、深度图、流水、交
 
 ## 访问统计
 
-线上页面会加载 Cloudflare Web Analytics 的 beacon（`src/analytics.ts`），用来统计访问量。它不使用 Cookie，不采集个人信息；本地开发、预览和验证脚本（localhost、127.0.0.1、局域网地址等）不会上报，加载失败也不影响页面。生产域名定下来后，把 `ANALYTICS.host` 填上即可只在该域名加载。
+线上页面会加载 Cloudflare Web Analytics 的 beacon（`src/analytics.ts`），用来统计访问量。它不使用 Cookie，不采集个人信息；只在 `ethwar.ondream.ai` 域名下加载，本地开发、预览和验证脚本不会上报，加载失败也不影响页面。
 
 ## 许可
 
