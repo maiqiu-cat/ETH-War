@@ -101,14 +101,14 @@ listeners() { ss -ltnH 2>/dev/null | awk '{print $4}' | LC_ALL=C sort -u; }
 # A bare/wildcard `listen 443` passes `nginx -t` but fails at reload when another process holds a
 # specific-IP :443 (as on production), leaving nginx on the old config and a poisoned file in conf.d.
 check_https_sockets() {
-  local tmpl="$KIT/nginx/ethwar.https.conf" want n=0
+  local tmpl="$KIT/nginx/ethwar.https.conf" want n=0 owned
   [ -f "$tmpl" ] || return 0
   for want in $(awk '/^[ \t]*listen[ \t]/ {a=$2; sub(/;$/,"",a); if (a ~ /(^|:)443$/) print a}' "$tmpl"); do
     case "$want" in
       443 | \*:443 | 0.0.0.0:443 | \[::\]:443) die "template has wildcard 'listen $want' — must use the explicit sockets other sites use; refusing" ;;
     esac
-    ss -ltnpH 2>/dev/null | awk -v w="$want" '$4==w' | grep -q nginx ||
-      die "template listens on $want but nginx does not currently own that socket — refusing"
+    owned=$(ss -ltnpH 2>/dev/null | awk -v w="$want" '$4==w')
+    case "$owned" in *nginx*) ;; *) die "template listens on $want but nginx does not currently own that socket — refusing" ;; esac
     n=$((n + 1))
   done
   [ "$n" -gt 0 ] || die "HTTPS template has no :443 listen"
@@ -137,7 +137,9 @@ preflight() {
   command -v openssl >/dev/null || die "openssl not found"
   log "nginx: $(nginx -v 2>&1)"
   nginx -t 2>/dev/null || die "current nginx config already fails 'nginx -t' — not touching anything"
-  nginx -T 2>/dev/null | grep -q 'include[[:space:]]\+/etc/nginx/conf.d/\*\.conf' || die "nginx.conf does not include conf.d/*.conf"
+  local dump
+  dump=$(nginx -T 2>/dev/null)
+  grep -q 'include[[:space:]]\+/etc/nginx/conf.d/\*\.conf' <<<"$dump" || die "nginx.conf does not include conf.d/*.conf"
   local conflict
   conflict=$(server_names | awk -v conf="$CONF" -v d="$DOMAIN" '$1 != conf && $2 == d {print $1}' | sort -u)
   [ -z "$conflict" ] || die "$DOMAIN already configured in: $conflict"
@@ -231,7 +233,7 @@ write_nginx() {
 }
 
 verify() {
-  local want got opts=(-H "Host: $DOMAIN") url="http://127.0.0.1" scheme=http
+  local want got opts=(-H "Host: $DOMAIN") url="http://127.0.0.1" scheme=http hdrs
   if [ -f "$CERT" ] && grep -q 'listen .*443' "$CONF" 2>/dev/null; then
     scheme=https
     opts=(--resolve "$DOMAIN:443:127.0.0.1")
@@ -249,7 +251,7 @@ verify() {
   local asset
   asset=$(grep -o '/assets/[^"]*\.js' "$SITE/current/index.html" | head -1 || true)
   if [ -n "$asset" ]; then
-    curl -fsS -m 10 -o /dev/null -D - "${opts[@]}" "$url$asset" | grep -qi 'cache-control: public, max-age=31536000, immutable' || {
+    hdrs=$(curl -fsS -m 10 -o /dev/null -D - "${opts[@]}" "$url$asset") && grep -qi 'cache-control: public, max-age=31536000, immutable' <<<"$hdrs" || {
       warn "asset $asset missing or without immutable caching"
       return 1
     }
